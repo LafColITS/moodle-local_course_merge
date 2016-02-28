@@ -1,0 +1,16 @@
+{
+    "name": "lafayette/local_course_merge",
+    "description": "Tool for creating metacourses",
+    "type": "moodle-local-plugin",
+    "require": {
+        "composer/installers": "^1.0"
+    },
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Charles Fulton",
+            "email": "fultonc@lafayette.edu"
+        }
+    ],
+    "minimum-stability": "stable"
+}
