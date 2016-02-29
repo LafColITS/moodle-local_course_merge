@@ -1,7 +1,7 @@
 @local @local_course_merge
 Feature: The course merge wizard allows a teacher to create a new course
   In order to create a new merged course
-  As a teacher
+  As a teacher or administrator
   I need to see my courses and create new enrolments
 
 Background:
@@ -35,13 +35,23 @@ Background:
   And I log out
 
 @javascript
-Scenario: See only my courses
+Scenario: Teacher sees only her courses
   When I log in as "teacher1"
   And I follow "Course 1"
   And I follow "Create merged course"
   And I set the following fields to these values:
     | Courses to merge | Course |
   Then I should not see "Course 2" in the ".form-autocomplete-suggestions" "css_element"
+
+@javascript
+Scenario: Admin sees all courses
+  When I log in as "admin"
+  And I follow "Courses"
+  And I follow "Course 1"
+  And I follow "Create merged course"
+  And I set the following fields to these values:
+    | Courses to merge | Course |
+  Then I should see "Course 2" in the ".form-autocomplete-suggestions" "css_element"
 
 @javascript
 Scenario: Create a new course
