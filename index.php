@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__) . '/../../config.php');
+require_once($CFG->dirroot.'/enrol/meta/locallib.php');
 
 $id     = required_param('id', PARAM_INT);
 $course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
@@ -20,17 +21,46 @@ require_capability('local/course_merge:create_course', $coursecontext);
 $PAGE->set_title(get_string('create', 'local_course_merge'));
 $PAGE->set_heading(get_string('create', 'local_course_merge'));
 
-$mform = new local_course_merge_select_form('index.php', array('id' => $id));
+$mform = new local_course_merge_create_form('index.php', array('id' => $course->id)); // Creation form.
+
 if ($mform->is_cancelled()) {
     die('Cancelled');
 } else if ($data = $mform->get_data()) {
-    $mform2 = new local_course_merge_create_form('index.php', array('id' => $id, 'link' => $data->link));
-    echo $OUTPUT->header();
-    $mform2->display();
-    echo $OUTPUT->footer();
+    // Process data.
+    $coursestolink = array_merge($data->link, array($id));
+
+    // Setup course.
+    $tocreate = new stdClass();
+    $tocreate->category  = $course->category;
+    $tocreate->startdate = $data->startdate;
+    $tocreate->fullname  = $data->fullname;
+    $tocreate->shortname = $data->shortname;
+    $tocreate->idnumber  = $data->idnumber;
+
+    // Create the course.
+    $newcourse = create_course($tocreate);
+    if(!$newcourse) {
+        die('Course not created');
+    }
+
+    // Create all the meta links.
+    $enrol = enrol_get_plugin('meta');
+    foreach($coursestolink as $target) {
+        $eid = $enrol->add_instance($newcourse, array('customint1' => $target));
+        enrol_meta_sync($newcourse->id);
+    }
+
+    // Create the groups if desired.
+
+    // We're done. Go to course.
+    $returnurl = new moodle_url('/course/view.php', array('id' => $newcourse->id));
+    redirect($returnurl);
 } else {
-    // Display selection page.
-    echo $OUTPUT->header();
-    $mform->display();
-    echo $OUTPUT->footer();
+    // Prep the form.
+    $mform->set_data(array('startdate' => $course->startdate));
 }
+
+// Display the form.
+echo $OUTPUT->header();
+$mform->display();
+echo $OUTPUT->footer();
