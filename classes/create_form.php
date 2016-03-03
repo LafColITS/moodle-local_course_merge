@@ -32,7 +32,7 @@ class local_course_merge_create_form extends moodleform {
         $mform->setType('idnumber', PARAM_RAW);
 
         // Start date.
-        $mform->addElement('date_selector', 'startdate', 'foo');
+        $mform->addElement('date_selector', 'startdate', get_string('startdate'));
 
         $mform->addElement('hidden', 'category');
         $mform->setType('category', PARAM_INT);
