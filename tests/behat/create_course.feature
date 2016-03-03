@@ -74,7 +74,25 @@ Scenario: Teacher cannot exceed category depth
     | Course short name | Test course        |
     | Course ID number  | C4                 |
   And I press "Create"
-  Then I should see "The following courses cannot be merged with this course: Course 1"
+  And I should see "The following courses cannot be merged with this course: Course 1"
+  And I log out
+  And I log in as "admin"
+  And I navigate to "Course Merge Wizard" node in "Site administration > Plugins > Local plugins"
+  And I set the field "Maximum category depth" to "No restrictions"
+  And I press "Save changes"
+  And I log out
+  And I log in as "teacher2"
+  And I follow "Course 2"
+  And I follow "Create merged course"
+  And I set the following fields to these values:
+    | Courses to merge | Course |
+  And I click on "Course 1" "list_item" in the ".form-autocomplete-suggestions" "css_element"
+  And I set the following fields to these values:
+    | Course full name  | Test merged course |
+    | Course short name | Test course        |
+    | Course ID number  | C4                 |
+  And I press "Create"
+  And I should not see "The following courses cannot be merged with this course: Course 1"
 
 @javascript
 Scenario: Admin sees all courses
