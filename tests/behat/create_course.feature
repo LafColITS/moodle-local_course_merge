@@ -28,6 +28,7 @@ Background:
   And the following "course enrolments" exist:
     | user     | course | role           |
     | teacher1 | C1     | editingteacher |
+    | teacher2 | C1     | editingteacher |
     | teacher1 | C3     | editingteacher |
     | teacher2 | C2     | editingteacher |
     | student1 | C1     | student        |
@@ -59,6 +60,21 @@ Scenario: Teacher sees only her courses
   And I set the following fields to these values:
     | Courses to merge | Course |
   Then I should not see "Course 2" in the ".form-autocomplete-suggestions" "css_element"
+
+@javascript
+Scenario: Teacher cannot exceed category depth
+  When I log in as "teacher2"
+  And I follow "Course 2"
+  And I follow "Create merged course"
+  And I set the following fields to these values:
+    | Courses to merge | Course |
+  And I click on "Course 1" "list_item" in the ".form-autocomplete-suggestions" "css_element"
+  And I set the following fields to these values:
+    | Course full name  | Test merged course |
+    | Course short name | Test course        |
+    | Course ID number  | C4                 |
+  And I press "Create"
+  Then I should see "The following courses cannot be merged with this course: Course 1"
 
 @javascript
 Scenario: Admin sees all courses
