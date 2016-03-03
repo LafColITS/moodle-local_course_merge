@@ -13,7 +13,7 @@ class local_course_merge_create_form extends moodleform {
         $course = $this->_customdata['id'];
 
         // Course chooser.
-        $options = array('showhidden' => true, 'requiredcapabilities' => array('moodle/course:update'), 'multiple' => true, 'excludecourseid' => $course);
+        $options = array('requiredcapabilities' => array('moodle/course:update'), 'multiple' => true, 'exclude' => array($course));
         $mform->addElement('course', 'link', get_string('coursestomerge', 'local_course_merge'), $options);
         $mform->addRule('link', get_string('required'), 'required', null, 'client');
 
