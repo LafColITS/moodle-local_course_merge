@@ -15,7 +15,11 @@ $PAGE->set_pagelayout('admin');
 $PAGE->set_context($coursecontext);
 
 // Permissions.
-require_capability('local/course_merge:create_course', $coursecontext);
+if(get_config('local_course_merge', 'respectpermissions')) {
+    require_capability('moodle/course:create', context_coursecat::instance($course->category));
+} else {
+    require_capability('local/course_merge:create_course', $coursecontext);
+}
 
 // Finish page setup.
 $PAGE->set_title(get_string('create', 'local_course_merge'));

@@ -41,6 +41,16 @@ Background:
   And I click on "Enable" "link" in the "Course meta link" "table_row"
   And I log out
 
+Scenario: Teacher lacks permissions
+  When I log in as "admin"
+  And I navigate to "Course Merge Wizard" node in "Site administration > Plugins > Local plugins"
+  And I set the field "Respect standard permissions" to "1"
+  And I press "Save changes"
+  And I log out
+  And I log in as "teacher1"
+  And I follow "Course 1"
+  And I should not see "Create merged course"
+
 @javascript
 Scenario: Teacher sees only her courses
   When I log in as "teacher1"
