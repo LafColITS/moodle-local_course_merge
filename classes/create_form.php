@@ -2,6 +2,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/formslib.php');
+include_once($CFG->libdir . '/coursecatlib.php');
+require('locallib.php');
 
 class local_course_merge_create_form extends moodleform {
 
@@ -32,9 +34,38 @@ class local_course_merge_create_form extends moodleform {
         // Start date.
         $mform->addElement('date_selector', 'startdate', 'foo');
 
+        $mform->addElement('hidden', 'category');
+        $mform->setType('category', PARAM_INT);
         $mform->addElement('hidden', 'id', $course);
         $mform->setType('id', PARAM_INT);
 
         $this->add_action_buttons(true, get_string('create'));
+    }
+
+    function validation($data, $files) {
+        global $DB;
+        $errors = array();
+
+        $maxdepth = get_config('local_course_merge', 'maxcategorydepth');
+        if ($maxdepth != COURSE_MERGE_DEPTH_UNLIMITED) {
+            $droppedcourses = array();
+            $validcategories = array($data['category']);
+            if ($maxdepth == COURSE_MERGE_DEPTH_SAME_PARENT) {
+                $parent = coursecat::get($data['category'])->get_parent_coursecat();
+                $children = $DB->get_fieldset_select('course_categories', 'id', 'parent = ?', array($parent->__get('id')));
+                $validcategories = array_merge($validcategories, $children);
+            }
+            $courses = $DB->get_records_list('course', 'id', $data['link'], null, 'id,fullname,category');
+            foreach($courses as $course) {
+                if(!in_array($course->category, $validcategories)) {
+                    $droppedcourses[] = $course->fullname;
+                }
+            }
+            if(!empty($droppedcourses)) {
+                $errors['link'] = get_string('coursestoodeep', 'local_course_merge', implode(', ', $droppedcourses));
+            }
+        }
+
+        return $errors;
     }
 }

@@ -5,11 +5,18 @@ Feature: The course merge wizard allows a teacher to create a new course
   I need to see my courses and create new enrolments
 
 Background:
-  Given the following "courses" exist:
+  Given the following "categories" exist:
+    | name       | category | idnumber |
+    | Category 1 | 0        | CAT1     |
+    | Category 2 | CAT1     | CAT2     |
+    | Category 3 | CAT1     | CAT3     |
+    | Category 4 | 0        | CAT4     |
+    | Category 5 | CAT4     | CAT5     |
+  And the following "courses" exist:
     | fullname | shortname | category |
-    | Course 1 | C1        | 0        |
-    | Course 2 | C2        | 0        |
-    | Course 3 | C3        | 0        |
+    | Course 1 | C1        | CAT2     |
+    | Course 2 | C2        | CAT5     |
+    | Course 3 | C3        | CAT3     |
   And the following "users" exist:
     | username | firstname | lastname | email |
     | teacher1 | Terry | Teacher | teacher1@example.com |
@@ -47,6 +54,8 @@ Scenario: Teacher sees only her courses
 Scenario: Admin sees all courses
   When I log in as "admin"
   And I follow "Courses"
+  And I follow "Category 1"
+  And I follow "Category 2"
   And I follow "Course 1"
   And I follow "Create merged course"
   And I set the following fields to these values:

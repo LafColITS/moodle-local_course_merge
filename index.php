@@ -57,7 +57,7 @@ if ($mform->is_cancelled()) {
     redirect($returnurl);
 } else {
     // Prep the form.
-    $mform->set_data(array('startdate' => $course->startdate));
+    $mform->set_data(array('startdate' => $course->startdate, 'category' => $course->category));
 }
 
 // Display the form.
