@@ -53,23 +53,12 @@ Scenario: Teacher lacks permissions
   And I should not see "Create merged course"
 
 @javascript
-Scenario: Teacher sees only her courses
-  When I log in as "teacher1"
-  And I follow "Course 1"
-  And I follow "Create merged course"
-  And I set the following fields to these values:
-    | Courses to merge | Course |
-  Then I should not see "Course 2" in the ".form-autocomplete-suggestions" "css_element"
-
-@javascript
 Scenario: Teacher cannot exceed category depth
   When I log in as "teacher2"
   And I follow "Course 2"
   And I follow "Create merged course"
   And I set the following fields to these values:
-    | Courses to merge | Course |
-  And I click on "Course 1" "list_item" in the ".form-autocomplete-suggestions" "css_element"
-  And I set the following fields to these values:
+    | Courses to merge  | Course 1 |
     | Course full name  | Test merged course |
     | Course short name | Test course        |
     | Course ID number  | C4                 |
@@ -85,9 +74,7 @@ Scenario: Teacher cannot exceed category depth
   And I follow "Course 2"
   And I follow "Create merged course"
   And I set the following fields to these values:
-    | Courses to merge | Course |
-  And I click on "Course 1" "list_item" in the ".form-autocomplete-suggestions" "css_element"
-  And I set the following fields to these values:
+    | Courses to merge  | Course 1 |
     | Course full name  | Test merged course |
     | Course short name | Test course        |
     | Course ID number  | C4                 |
@@ -95,26 +82,12 @@ Scenario: Teacher cannot exceed category depth
   And I should not see "The following courses cannot be merged with this course: Course 1"
 
 @javascript
-Scenario: Admin sees all courses
-  When I log in as "admin"
-  And I follow "Courses"
-  And I follow "Category 1"
-  And I follow "Category 2"
-  And I follow "Course 1"
-  And I follow "Create merged course"
-  And I set the following fields to these values:
-    | Courses to merge | Course |
-  Then I should see "Course 2" in the ".form-autocomplete-suggestions" "css_element"
-
-@javascript
 Scenario: Create a new course
   When I log in as "teacher1"
   And I follow "Course 1"
   And I follow "Create merged course"
   And I set the following fields to these values:
-    | Courses to merge | Course |
-  And I click on "Course 3" "list_item" in the ".form-autocomplete-suggestions" "css_element"
-  And I set the following fields to these values:
+    | Courses to merge  | Course 3 |
     | Course full name  | Test merged course |
     | Course short name | Test course        |
     | Course ID number  | C4                 |
