@@ -34,6 +34,10 @@ class local_course_merge_create_form extends moodleform {
         // Start date.
         $mform->addElement('date_selector', 'startdate', get_string('startdate'));
 
+        // Hide child courses.
+        $mform->addElement('checkbox', 'hidecourses', get_string('hidecourses', 'local_course_merge'));
+        $mform->setDefault('hidecourses', 1);
+
         $mform->addElement('hidden', 'category');
         $mform->setType('category', PARAM_INT);
         $mform->addElement('hidden', 'id', $course);

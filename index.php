@@ -43,15 +43,24 @@ if ($mform->is_cancelled()) {
 
     // Create the course.
     $newcourse = create_course($tocreate);
-    if(!$newcourse) {
+    if (!$newcourse) {
         die('Course not created');
     }
 
     // Create all the meta links.
     $enrol = enrol_get_plugin('meta');
-    foreach($coursestolink as $target) {
+    foreach ($coursestolink as $target) {
         $eid = $enrol->add_instance($newcourse, array('customint1' => $target));
         enrol_meta_sync($newcourse->id);
+    }
+
+    // Hide child courses.
+    if ($data->hidecourses) {
+        foreach ($coursestolink as $oldcourseid) {
+            $oldcourse = course_get_format($oldcourseid)->get_course();
+            $oldcourse->visible = 0;
+            update_course($oldcourse);
+        }
     }
 
     // Create the groups if desired.

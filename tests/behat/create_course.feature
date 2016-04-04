@@ -82,8 +82,12 @@ Scenario: Teacher cannot exceed category depth
   And I should not see "The following courses cannot be merged with this course: Course 1"
 
 @javascript
-Scenario: Create a new course
-  When I log in as "teacher1"
+Scenario: Create a new course and hide old courses
+  When I log in as "student3"
+  And I should see "Course 2"
+  And I should see "Course 3"
+  And I log out
+  And I log in as "teacher1"
   And I follow "Course 1"
   And I follow "Create merged course"
   And I set the following fields to these values:
@@ -101,3 +105,8 @@ Scenario: Create a new course
   And I should see "Steve Student"
   And I should see "Sadie Student"
   And I should see "Shawn Student"
+  And I log out
+  And I log in as "student3"
+  And I should see "Test merged course"
+  And I should see "Course 2"
+  And I should not see "Course 3"
