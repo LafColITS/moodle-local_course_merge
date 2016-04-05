@@ -11,6 +11,7 @@ $string['coursenameformat_desc'] = 'Regular expression describing the standard c
 $string['coursestomerge'] = 'Courses to merge';
 $string['coursestoodeep'] = 'The following courses cannot be merged with this course: {$a}';
 $string['create'] = 'Create merged course';
+$string['groupsync'] = 'Auto-create groups?';
 $string['hidecourses'] = 'Hide child courses?';
 $string['maxcategorydepth'] = 'Maximum category depth';
 $string['maxcategorydepth_desc'] = 'Restrict the courses which can be merged together by category depth.';

@@ -110,3 +110,19 @@ Scenario: Create a new course and hide old courses
   And I should see "Test merged course"
   And I should see "Course 2"
   And I should not see "Course 3"
+
+@javascript
+Scenario: Create new courses with and without groups
+  Given I log in as "teacher1"
+  And I follow "Course 1"
+  And I follow "Create merged course"
+  And I set the following fields to these values:
+    | Courses to merge  | Course 3 |
+    | Course full name  | Test merged course |
+    | Course short name | Test course        |
+    | Course ID number  | C4                 |
+  And I press "Create"
+  And I should see "Test merged course"
+  And I navigate to "Groups" node in "Course administration > Users"
+  And I should see "Course 1 course (4)"
+  And I should see "Course 3 course (3)"

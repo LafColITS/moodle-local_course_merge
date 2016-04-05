@@ -49,9 +49,23 @@ if ($mform->is_cancelled()) {
 
     // Create all the meta links.
     $enrol = enrol_get_plugin('meta');
+    $instances = array();
     foreach ($coursestolink as $target) {
-        $eid = $enrol->add_instance($newcourse, array('customint1' => $target));
+        $instances[$target] = $enrol->add_instance($newcourse, array('customint1' => $target));
         enrol_meta_sync($newcourse->id);
+    }
+
+    // Create the groups. We do this separately because the teachers don't
+    // have an enrolment yet.
+    if (!empty($data->groupsync) && $data->groupsync) {
+        foreach ($instances as $targetid => $eid) {
+            $update = new stdClass();
+            $update->customint1 = $targetid;
+            $update->customint2 = ENROL_META_CREATE_GROUP;
+            $instance = $DB->get_record('enrol', array('courseid' => $newcourse->id,
+                'enrol' => 'meta', 'id' => $eid), '*', MUST_EXIST);
+            $enrol->update_instance($instance, $update);
+        }
     }
 
     // Hide child courses.
@@ -62,8 +76,6 @@ if ($mform->is_cancelled()) {
             update_course($oldcourse);
         }
     }
-
-    // Create the groups if desired.
 
     // We're done. Go to course.
     $returnurl = new moodle_url('/course/view.php', array('id' => $newcourse->id));

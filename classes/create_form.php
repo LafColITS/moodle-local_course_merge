@@ -38,6 +38,10 @@ class local_course_merge_create_form extends moodleform {
         $mform->addElement('checkbox', 'hidecourses', get_string('hidecourses', 'local_course_merge'));
         $mform->setDefault('hidecourses', 1);
 
+        // Auto-create groups.
+        $mform->addElement('checkbox', 'groupsync', get_string('groupsync', 'local_course_merge'));
+        $mform->setDefault('groupsync', true);
+
         $mform->addElement('hidden', 'category');
         $mform->setType('category', PARAM_INT);
         $mform->addElement('hidden', 'id', $course);
