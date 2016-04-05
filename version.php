@@ -16,7 +16,7 @@
 
 /**
  * @package   local_course_merge
- * @copyright 2016, Lafayette College ITS
+ * @copyright 2016 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

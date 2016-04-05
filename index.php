@@ -1,4 +1,26 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Create a new meta course from multiple child courses.
+ *
+ * @package   local_course_merge
+ * @copyright 2016 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 require_once(dirname(__FILE__) . '/../../config.php');
 require_once($CFG->dirroot.'/enrol/meta/locallib.php');
@@ -15,7 +37,7 @@ $PAGE->set_pagelayout('admin');
 $PAGE->set_context($coursecontext);
 
 // Permissions.
-if(get_config('local_course_merge', 'respectpermissions')) {
+if (get_config('local_course_merge', 'respectpermissions')) {
     require_capability('moodle/course:create', context_coursecat::instance($course->category));
 } else {
     require_capability('local/course_merge:create_course', $coursecontext);
@@ -69,7 +91,7 @@ if ($mform->is_cancelled()) {
     }
 
     // Hide child courses.
-    if ($data->hidecourses) {
+    if (!empty($data->hidecourses) && $data->hidecourses) {
         foreach ($coursestolink as $oldcourseid) {
             $oldcourse = course_get_format($oldcourseid)->get_course();
             $oldcourse->visible = 0;

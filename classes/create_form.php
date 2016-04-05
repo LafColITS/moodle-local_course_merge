@@ -1,13 +1,35 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Local course merge course creation form.
+ *
+ * @package   local_course_merge
+ * @copyright 2016 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/formslib.php');
-include_once($CFG->libdir . '/coursecatlib.php');
+require_once($CFG->libdir . '/coursecatlib.php');
 require('locallib.php');
 
 class local_course_merge_create_form extends moodleform {
 
-    function definition() {
+    public function definition() {
         $mform = $this->_form;
 
         $course = $this->_customdata['id'];
@@ -50,7 +72,7 @@ class local_course_merge_create_form extends moodleform {
         $this->add_action_buttons(true, get_string('create'));
     }
 
-    function validation($data, $files) {
+    public function validation($data, $files) {
         global $DB;
         $errors = array();
 
@@ -64,12 +86,12 @@ class local_course_merge_create_form extends moodleform {
                 $validcategories = array_merge($validcategories, $children);
             }
             $courses = $DB->get_records_list('course', 'id', $data['link'], null, 'id,fullname,category');
-            foreach($courses as $course) {
-                if(!in_array($course->category, $validcategories)) {
+            foreach ($courses as $course) {
+                if (!in_array($course->category, $validcategories)) {
                     $droppedcourses[] = $course->fullname;
                 }
             }
-            if(!empty($droppedcourses)) {
+            if (!empty($droppedcourses)) {
                 $errors['link'] = get_string('coursestoodeep', 'local_course_merge', implode(', ', $droppedcourses));
             }
         }
