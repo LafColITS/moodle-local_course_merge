@@ -30,9 +30,11 @@ require('locallib.php');
 class local_course_merge_create_form extends moodleform {
 
     public function definition() {
+        global $DB;
         $mform = $this->_form;
 
         $course = $this->_customdata['id'];
+        $coursedata = $DB->get_record('course', array('id' => $course), '*', MUST_EXIST);
 
         // Course chooser.
         $options = array('requiredcapabilities' => array('moodle/course:update'), 'multiple' => true, 'exclude' => array($course));
@@ -55,6 +57,7 @@ class local_course_merge_create_form extends moodleform {
 
         // Start date.
         $mform->addElement('date_selector', 'startdate', get_string('startdate'));
+        $mform->setDefault('startdate', $coursedata->startdate);
 
         // Hide child courses.
         $mform->addElement('checkbox', 'hidecourses', get_string('hidecourses', 'local_course_merge'));
@@ -64,13 +67,19 @@ class local_course_merge_create_form extends moodleform {
         $mform->addElement('checkbox', 'groupsync', get_string('groupsync', 'local_course_merge'));
         $mform->setDefault('groupsync', true);
 
-        // Prevent teacher from changing templated information.
-        if (get_config('local_course_merge', 'usenametemplates')
-            && !has_capability('local/course_merge:override_format', context_course::instance($course))) {
-            $mform->hardFreeze('fullname');
-            $mform->hardFreeze('shortname');
-            $mform->hardFreeze('idnumber');
-            $mform->hardFreeze('startdate');
+        // Set templated defaults.
+        if (get_config('local_course_merge', 'usenametemplates')) {
+            $mform->setDefault('fullname', local_course_merge_extract_names::get_default_fullname($coursedata));
+            $mform->setDefault('shortname', local_course_merge_extract_names::get_default_shortname($coursedata));
+            $mform->setDefault('idnumber', local_course_merge_extract_names::get_default_idnumber($coursedata));
+
+            // Prevent teacher from changing templated information.
+            if (!has_capability('local/course_merge:override_format', context_course::instance($course))) {
+                $mform->freeze('fullname');
+                $mform->freeze('shortname');
+                $mform->freeze('idnumber');
+                $mform->freeze('startdate');
+            }
         }
 
         // Metadata.

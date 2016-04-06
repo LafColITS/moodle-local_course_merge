@@ -113,15 +113,7 @@ if ($mform->is_cancelled()) {
     redirect($returnurl);
 } else {
     // Prep the form.
-    $defaultdata = array('startdate' => $course->startdate, 'category' => $course->category);
-    if (get_config('local_course_merge', 'usenametemplates')) {
-        $defaultdata = array_merge($defaultdata, array(
-          'fullname' => local_course_merge_extract_names::get_default_fullname($course),
-          'shortname' => local_course_merge_extract_names::get_default_shortname($course),
-          'idnumber' => local_course_merge_extract_names::get_default_idnumber($course)
-        ));
-    }
-    $mform->set_data($defaultdata);
+    $mform->set_data(array('category' => $course->category));
 }
 
 // Display the form.
