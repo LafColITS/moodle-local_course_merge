@@ -45,10 +45,12 @@ class local_course_merge_extract_names {
 
         $fields = array('fullname', 'shortname', 'idnumber');
         $courses = $DB->get_records_list('course', 'id', $courseids, '', 'fullname');
-        $sectionlist = '';
+        $sections = array();
         foreach ($courses as $course) {
-            $sectionlist .= ltrim(self::replace_token('[SECTION]', $course), '0');
+            $sections[] = ltrim(self::replace_token('[SECTION]', $course), '0');
         }
+        sort($sections);
+        $sectionlist = implode('', $sections);
         foreach ($fields as $field) {
             $data->{$field} = str_replace('[SECTIONS]', $sectionlist, $data->{$field});
         }
