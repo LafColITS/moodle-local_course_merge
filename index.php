@@ -55,6 +55,14 @@ if ($mform->is_cancelled()) {
     // Process data.
     $coursestolink = array_merge($data->link, array($id));
 
+    // The [SECTIONS] variable is supported at this time; we need to post-process the data.
+    if (get_config('local_course_merge', 'usenametemplates')) {
+        $data = local_course_merge_extract_names::post_process($data, $coursestolink);
+    }
+
+    // Final check that this course is unique.
+    local_course_merge_helper::course_exists($data, new moodle_url('/course/view.php', array('id' => $course->id)));
+
     // Setup course.
     $tocreate = new stdClass();
     $tocreate->category  = $course->category;
@@ -104,7 +112,15 @@ if ($mform->is_cancelled()) {
     redirect($returnurl);
 } else {
     // Prep the form.
-    $mform->set_data(array('startdate' => $course->startdate, 'category' => $course->category));
+    $defaultdata = array('startdate' => $course->startdate, 'category' => $course->category);
+    if (get_config('local_course_merge', 'usenametemplates')) {
+        $defaultdata = array_merge($defaultdata, array(
+          'fullname' => local_course_merge_extract_names::get_default_fullname($course),
+          'shortname' => local_course_merge_extract_names::get_default_shortname($course),
+          'idnumber' => local_course_merge_extract_names::get_default_idnumber($course)
+        ));
+    }
+    $mform->set_data($defaultdata);
 }
 
 // Display the form.

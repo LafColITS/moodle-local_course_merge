@@ -15,16 +15,24 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Helper functions for name processing.
+ *
  * @package   local_course_merge
  * @copyright 2016 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016040600;
-$plugin->requires  = 2016022500.01;
-$plugin->cron      = 0;
-$plugin->component = 'local_course_merge';
-$plugin->maturity  = MATURITY_ALPHA;
-//$plugin->release   = 'TODO';
+class local_course_merge_helper {
+    public static function course_exists($course, $url) {
+        global $DB;
+
+        if ($DB->record_exists('course', array('shortname' => $course->shortname))) {
+            throw new moodle_exception('shortnameexists', 'local_course_merge', $url, $course->shortname);
+        }
+
+        if (!empty($course->idnumber) && $DB->record_exists('course', array('idnumber' => $course->idnumber))) {
+            throw new moodle_exception('idnumberexists', 'local_course_merge', $url, $course->idnumber);
+        }
+    }
+}

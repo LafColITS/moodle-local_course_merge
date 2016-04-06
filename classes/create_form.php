@@ -50,7 +50,7 @@ class local_course_merge_create_form extends moodleform {
         $mform->addRule('shortname', null, 'required', null, 'client');
 
         // ID number.
-        $mform->addElement('text', 'idnumber', get_string('idnumbercourse'), 'maxlength="100" size="10"');
+        $mform->addElement('text', 'idnumber', get_string('idnumbercourse'), 'maxlength="100" size="20"');
         $mform->setType('idnumber', PARAM_RAW);
 
         // Start date.
