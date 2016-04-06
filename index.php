@@ -50,7 +50,8 @@ $PAGE->set_heading(get_string('create', 'local_course_merge'));
 $mform = new local_course_merge_create_form('index.php', array('id' => $course->id)); // Creation form.
 
 if ($mform->is_cancelled()) {
-    die('Cancelled');
+    $returnurl = new moodle_url('/course/view.php', array('id' => $course->id));
+    redirect($returnurl);
 } else if ($data = $mform->get_data()) {
     // Process data.
     $coursestolink = array_merge($data->link, array($id));
