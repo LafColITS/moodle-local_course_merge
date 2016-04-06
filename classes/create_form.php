@@ -64,6 +64,16 @@ class local_course_merge_create_form extends moodleform {
         $mform->addElement('checkbox', 'groupsync', get_string('groupsync', 'local_course_merge'));
         $mform->setDefault('groupsync', true);
 
+        // Prevent teacher from changing templated information.
+        if (get_config('local_course_merge', 'usenametemplates')
+            && !has_capability('local/course_merge:override_format', context_course::instance($course))) {
+            $mform->hardFreeze('fullname');
+            $mform->hardFreeze('shortname');
+            $mform->hardFreeze('idnumber');
+            $mform->hardFreeze('startdate');
+        }
+
+        // Metadata.
         $mform->addElement('hidden', 'category');
         $mform->setType('category', PARAM_INT);
         $mform->addElement('hidden', 'id', $course);

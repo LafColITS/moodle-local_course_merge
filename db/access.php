@@ -30,7 +30,18 @@ $capabilities = array(
             'student'        => CAP_PROHIBIT,
             'teacher'        => CAP_PREVENT,
             'editingteacher' => CAP_ALLOW,
-            'manager'          => CAP_ALLOW
-        )
+            'manager'        => CAP_ALLOW
+        ),
     ),
+
+    'local/course_merge:override_format' => array(
+        'captype'      => 'write',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes'   => array(
+            'student'        => CAP_PROHIBIT,
+            'teacher'        => CAP_PREVENT,
+            'editingteacher' => CAP_PREVENT,
+            'manager'        => CAP_ALLOW
+        )
+    )
 );
