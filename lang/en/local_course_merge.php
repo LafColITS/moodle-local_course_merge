@@ -25,6 +25,7 @@
 defined('MOODLE_INTERNAL') || die;
 
 $string['course_merge:create_course'] = 'Create merged course';
+$string['course_merge:override_format'] = 'Allow override of template format';
 $string['coursemergesamecategory'] = 'Courses in the same category';
 $string['coursemergesameparent'] = 'Courses with the same parent category';
 $string['coursemergeunlimited'] = 'No restrictions';
