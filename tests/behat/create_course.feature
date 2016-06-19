@@ -1,5 +1,5 @@
 @local @local_course_merge
-Feature: The course merge wizard allows a teacher to create a new course
+Feature: The course merge helper allows a teacher to create a new course
   In order to create a new merged course
   As a teacher or administrator
   I need to see my courses and create new enrolments
@@ -40,26 +40,26 @@ Background:
   And I log in as "admin"
   And I navigate to "Manage enrol plugins" node in "Site administration > Plugins > Enrolments"
   And I click on "Enable" "link" in the "Course meta link" "table_row"
-  And I navigate to "Course Merge Wizard" node in "Site administration > Plugins > Local plugins"
+  And I navigate to "Course Merge Helper" node in "Site administration > Plugins > Local plugins"
   And I set the field "Respect standard permissions" to "0"
   And I press "Save changes"
   And I log out
 
 Scenario: Teacher lacks permissions by default
   When I log in as "admin"
-  And I navigate to "Course Merge Wizard" node in "Site administration > Plugins > Local plugins"
+  And I navigate to "Course Merge Helper" node in "Site administration > Plugins > Local plugins"
   And I set the field "Respect standard permissions" to "1"
   And I press "Save changes"
   And I log out
   And I log in as "teacher1"
   And I follow "Course 1"
-  And I should not see "Create merged course"
+  And I should not see "Create merged course shell"
 
 @javascript
 Scenario: Teacher cannot exceed category depth
   When I log in as "teacher2"
   And I follow "Course 2"
-  And I follow "Create merged course"
+  And I follow "Create merged course shell"
   And I set the following fields to these values:
     | Courses to merge  | Course 1 |
     | Course full name  | Test merged course |
@@ -69,13 +69,13 @@ Scenario: Teacher cannot exceed category depth
   And I should see "The following courses cannot be merged with this course: Course 1"
   And I log out
   And I log in as "admin"
-  And I navigate to "Course Merge Wizard" node in "Site administration > Plugins > Local plugins"
+  And I navigate to "Course Merge Helper" node in "Site administration > Plugins > Local plugins"
   And I set the field "Maximum category depth" to "No restrictions"
   And I press "Save changes"
   And I log out
   And I log in as "teacher2"
   And I follow "Course 2"
-  And I follow "Create merged course"
+  And I follow "Create merged course shell"
   And I set the following fields to these values:
     | Courses to merge  | Course 1 |
     | Course full name  | Test merged course |
@@ -92,7 +92,7 @@ Scenario: Create a new course and hide old courses
   And I log out
   And I log in as "teacher1"
   And I follow "Course 1"
-  And I follow "Create merged course"
+  And I follow "Create merged course shell"
   And I set the following fields to these values:
     | Courses to merge  | Course 3 |
     | Course full name  | Test merged course |
@@ -118,7 +118,7 @@ Scenario: Create a new course and hide old courses
 Scenario: Create new courses with and without groups
   Given I log in as "teacher1"
   And I follow "Course 1"
-  And I follow "Create merged course"
+  And I follow "Create merged course shell"
   And I set the following fields to these values:
     | Courses to merge  | Course 3 |
     | Course full name  | Test merged course |

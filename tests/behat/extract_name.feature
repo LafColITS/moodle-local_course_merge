@@ -1,5 +1,5 @@
 @local @local_course_merge
-Feature: The course merge wizard allows a teacher to create a new course
+Feature: The course merge helper allows a teacher to create a new course
   In order to create a new merged course with a standard name
   As a teacher or administrator
   I need to define a standard naming convention
@@ -31,7 +31,7 @@ Feature: The course merge wizard allows a teacher to create a new course
     And I log in as "admin"
     And I navigate to "Manage enrol plugins" node in "Site administration > Plugins > Enrolments"
     And I click on "Enable" "link" in the "Course meta link" "table_row"
-    And I navigate to "Course Merge Wizard" node in "Site administration > Plugins > Local plugins"
+    And I navigate to "Course Merge Helper" node in "Site administration > Plugins > Local plugins"
     And I set the field "Respect standard permissions" to "0"
     And I set the field "Use name templates" to "1"
     And I set the field "Course title" to "/[A-Z]+\s[0-9]+\.[0-9]+-[A-Za-z]+[0-9]{4,}\s(.*)/"
@@ -50,7 +50,7 @@ Feature: The course merge wizard allows a teacher to create a new course
 Scenario: Teacher creates course
     When I log in as "teacher1"
     And I follow "HIST 300.01-FA2016 Foo"
-    And I follow "Create merged course"
+    And I follow "Create merged course shell"
     And I set the following fields to these values:
       | Courses to merge | HIST 300.02-FA2016 Foo |
     And I press "Create"

@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$string['course_merge:create_course'] = 'Create merged course';
+$string['course_merge:create_course'] = 'Create merged course shell';
 $string['course_merge:override_format'] = 'Allow override of template format';
 $string['coursemergesamecategory'] = 'Courses in the same category';
 $string['coursemergesameparent'] = 'Courses with the same parent category';
@@ -33,7 +33,7 @@ $string['coursenameformat'] = 'Course name format';
 $string['coursenameformat_desc'] = 'Regular expression describing the standard course fullname. Leave blank to disable fullname prepopulation.';
 $string['coursestomerge'] = 'Courses to merge';
 $string['coursestoodeep'] = 'The following courses cannot be merged with this course: {$a}';
-$string['create'] = 'Create merged course';
+$string['create'] = 'Create merged course shell';
 $string['extractname'] = 'Extract name';
 $string['extractnamedept'] = 'Department';
 $string['extractnamedept_desc'] = 'The department code. Used to populate [DEPT].';
@@ -52,7 +52,7 @@ $string['generalsettings'] = 'General settings';
 $string['generalsettingsinfo'] = '';
 $string['groupsync'] = 'Auto-create groups?';
 $string['hidecourses'] = 'Hide child courses?';
-$string['idnumberexists'] = 'Could not create merged course: a course with the idnumber {$a} already exists.';
+$string['idnumberexists'] = 'Could not create merged course shell: a course with the idnumber {$a} already exists.';
 $string['maxcategorydepth'] = 'Maximum category depth';
 $string['maxcategorydepth_desc'] = 'Restrict the courses which can be merged together by category depth.';
 $string['mergedcourseidnumberformat'] = 'Merged course idnumber format';
@@ -62,7 +62,7 @@ $string['mergedcoursenameformat_desc'] = 'The format to suggest for a merged cou
 $string['mergedcourseshortnameformat'] = 'Merged course shortname format';
 $string['mergedcourseshortnameformat_desc'] = 'The format to suggest for a merged course shortname.';
 $string['metalinknotenabled'] = 'This tool requires that the Course Meta Link enrolment method be enabled.';
-$string['pluginname'] = 'Course Merge Wizard';
+$string['pluginname'] = 'Course Merge Helper';
 $string['respectpermissions'] = 'Respect standard permissions';
 $string['respectpermissions_desc'] = 'By default this plugin uses its own capabilities and disregards whether teachers are allowed to create courses. Check this setting to force the plugin to respect those permissions.';
 $string['shortnameexists'] = 'Could not create merged course: a course with the shortname {$a} already exists.';

@@ -1,4 +1,4 @@
-Moodle Course Merge Wizard
+Moodle Course Merge Helper
 ==========================
 
 [![Build Status](https://api.travis-ci.org/mackensen/moodle-local_course_merge.png)](https://api.travis-ci.org/mackensen/moodle-local_course_merge)
