@@ -61,6 +61,7 @@ $string['mergedcoursenameformat'] = 'Merged course name format';
 $string['mergedcoursenameformat_desc'] = 'The format to suggest for a merged course name.';
 $string['mergedcourseshortnameformat'] = 'Merged course shortname format';
 $string['mergedcourseshortnameformat_desc'] = 'The format to suggest for a merged course shortname.';
+$string['metalinknotenabled'] = 'This tool requires that the Course Meta Link enrolment method be enabled.';
 $string['pluginname'] = 'Course Merge Wizard';
 $string['respectpermissions'] = 'Respect standard permissions';
 $string['respectpermissions_desc'] = 'By default this plugin uses its own capabilities and disregards whether teachers are allowed to create courses. Check this setting to force the plugin to respect those permissions.';

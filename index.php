@@ -43,6 +43,12 @@ if (get_config('local_course_merge', 'respectpermissions')) {
     require_capability('local/course_merge:create_course', $coursecontext);
 }
 
+// Course meta link has to be active.
+if (!local_course_merge_helper::meta_link_enabled()) {
+    $returnurl = new moodle_url('/course/view.php', array('id' => $course->id));
+    print_error('metalinknotenabled', 'local_course_merge');
+}
+
 // Finish page setup.
 $PAGE->set_title(get_string('create', 'local_course_merge'));
 $PAGE->set_heading(get_string('create', 'local_course_merge'));

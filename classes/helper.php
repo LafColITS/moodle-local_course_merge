@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Helper functions for name processing.
+ * Helper functions.
  *
  * @package   local_course_merge
  * @copyright 2016 Lafayette College ITS
@@ -34,5 +34,10 @@ class local_course_merge_helper {
         if (!empty($course->idnumber) && $DB->record_exists('course', array('idnumber' => $course->idnumber))) {
             throw new moodle_exception('idnumberexists', 'local_course_merge', $url, $course->idnumber);
         }
+    }
+
+    public static function meta_link_enabled() {
+        $enrolplugins = core_plugin_manager::instance()->get_enabled_plugins('enrol');
+        return array_key_exists('meta', $enrolplugins);
     }
 }
