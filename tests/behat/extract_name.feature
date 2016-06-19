@@ -32,6 +32,7 @@ Feature: The course merge wizard allows a teacher to create a new course
     And I navigate to "Manage enrol plugins" node in "Site administration > Plugins > Enrolments"
     And I click on "Enable" "link" in the "Course meta link" "table_row"
     And I navigate to "Course Merge Wizard" node in "Site administration > Plugins > Local plugins"
+    And I set the field "Respect standard permissions" to "0"
     And I set the field "Use name templates" to "1"
     And I set the field "Course title" to "/[A-Z]+\s[0-9]+\.[0-9]+-[A-Za-z]+[0-9]{4,}\s(.*)/"
     And I set the field "Department" to "/([A-Z]+)\s[0-9]+\.[0-9]+-[A-Za-z]+[0-9]{4,}\s.*/"

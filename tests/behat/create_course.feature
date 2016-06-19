@@ -40,9 +40,12 @@ Background:
   And I log in as "admin"
   And I navigate to "Manage enrol plugins" node in "Site administration > Plugins > Enrolments"
   And I click on "Enable" "link" in the "Course meta link" "table_row"
+  And I navigate to "Course Merge Wizard" node in "Site administration > Plugins > Local plugins"
+  And I set the field "Respect standard permissions" to "0"
+  And I press "Save changes"
   And I log out
 
-Scenario: Teacher lacks permissions
+Scenario: Teacher lacks permissions by default
   When I log in as "admin"
   And I navigate to "Course Merge Wizard" node in "Site administration > Plugins > Local plugins"
   And I set the field "Respect standard permissions" to "1"

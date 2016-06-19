@@ -44,7 +44,7 @@ if ($hassiteconfig) {
     ));
 
     $settings->add(new admin_setting_configcheckbox('local_course_merge/respectpermissions',
-        get_string('respectpermissions', 'local_course_merge'), get_string('respectpermissions_desc', 'local_course_merge'), 0));
+        get_string('respectpermissions', 'local_course_merge'), get_string('respectpermissions_desc', 'local_course_merge'), 1));
 
     $settings->add(new admin_setting_configcheckbox('local_course_merge/usenametemplates',
         new lang_string('usenametemplates', 'local_course_merge'),
