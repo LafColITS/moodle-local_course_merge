@@ -52,7 +52,7 @@ With *same category* selected, a teacher could start with History 101.01 and sel
 
 ### Permissions
 
-The plugin is designed to provide a controlled course-creation capability which doesn't otherwise exist. You may choose, however, to have it respect the `moodle/course:create` capability instead of its own local permissions.
+The plugin is designed to provide a controlled course-creation capability which doesn't otherwise exist. By default it respects the `moodle/course:create` capability, but you may choose to override this.
 
 ### Templates
 
