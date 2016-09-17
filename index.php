@@ -77,6 +77,7 @@ if ($mform->is_cancelled()) {
     $tocreate->fullname  = $data->fullname;
     $tocreate->shortname = $data->shortname;
     $tocreate->idnumber  = $data->idnumber;
+    $tocreate->visible   = 0;
 
     // Create the course.
     $newcourse = create_course($tocreate);

@@ -40,4 +40,9 @@ class local_course_merge_helper {
         $enrolplugins = core_plugin_manager::instance()->get_enabled_plugins('enrol');
         return array_key_exists('meta', $enrolplugins);
     }
+
+    public static function get_parent_coursecat($category) {
+        $parents = coursecat::get($category, MUST_EXIST, true)->get_parents();
+        return coursecat::get(end($parents), MUST_EXIST, true);
+    }
 }

@@ -6,17 +6,17 @@ Feature: The course merge helper allows a teacher to create a new course
 
 Background:
   Given the following "categories" exist:
-    | name       | category | idnumber |
-    | Category 1 | 0        | CAT1     |
-    | Category 2 | CAT1     | CAT2     |
-    | Category 3 | CAT1     | CAT3     |
-    | Category 4 | 0        | CAT4     |
-    | Category 5 | CAT4     | CAT5     |
+    | name       | category | idnumber | visible |
+    | Category 1 | 0        | CAT1     | 0 |
+    | Category 2 | CAT1     | CAT2     | 0 |
+    | Category 3 | CAT1     | CAT3     | 0 |
+    | Category 4 | 0        | CAT4     | 0 |
+    | Category 5 | CAT4     | CAT5     | 0 |
   And the following "courses" exist:
-    | fullname | shortname | category |
-    | Course 1 | C1        | CAT2     |
-    | Course 2 | C2        | CAT5     |
-    | Course 3 | C3        | CAT3     |
+    | fullname | shortname | category | visible |
+    | Course 1 | C1        | CAT2     | 1 |
+    | Course 2 | C2        | CAT5     | 1 |
+    | Course 3 | C3        | CAT3     | 1 |
   And the following "users" exist:
     | username | firstname | lastname | email |
     | teacher1 | Terry | Teacher | teacher1@example.com |
@@ -108,6 +108,10 @@ Scenario: Create a new course and hide old courses
   And I should see "Steve Student"
   And I should see "Sadie Student"
   And I should see "Shawn Student"
+  And I navigate to "Edit settings" node in "Course administration"
+  And I set the following fields to these values:
+    | Visible | Show |
+  And I press "Save and display"
   And I log out
   And I log in as "student3"
   And I should see "Test merged course"

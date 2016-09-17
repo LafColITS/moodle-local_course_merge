@@ -100,7 +100,7 @@ class local_course_merge_create_form extends moodleform {
             $droppedcourses = array();
             $validcategories = array($data['category']);
             if ($maxdepth == COURSE_MERGE_DEPTH_SAME_PARENT) {
-                $parent = coursecat::get($data['category'])->get_parent_coursecat();
+                $parent = local_course_merge_helper::get_parent_coursecat($data['category']);
                 $children = $DB->get_fieldset_select('course_categories', 'id', 'parent = ?', array($parent->__get('id')));
                 $validcategories = array_merge($validcategories, $children);
             }
