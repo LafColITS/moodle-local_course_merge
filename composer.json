@@ -1,7 +1,7 @@
 {
     "name": "lafayette/local_course_merge",
     "description": "Tool for creating metacourses",
-    "type": "moodle-local-plugin",
+    "type": "moodle-local",
     "require": {
         "composer/installers": "^1.0"
     },
