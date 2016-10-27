@@ -5,8 +5,6 @@ Moodle Course Merge Helper
 
 This local module allows teachers to create a new course from existing courses using the [Course Meta Link](https://docs.moodle.org/31/en/Course_meta_link) enrollment method. The intended use case is a teacher combining multiple sections of a course into a single course while preserving the enrollments of the original courses.
 
-This is **alpha** code at present. It has been tested in virtual environments and is feature-complete but further testing is ongoing. We're planning a feature release for July 2016. Please report all issues to [GitHub](https://github.com/mackensen/moodle-local_course_merge/issues).
-
 Requirements
 ------------
 - Moodle 3.1 (build 2016052300 or later)
