@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
+
 function local_course_merge_extend_navigation_course($navigation, $course, $context) {
     $respectpermissions = get_config('local_course_merge', 'respectpermissions');
     if ($course->category == 0) {

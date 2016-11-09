@@ -93,7 +93,7 @@ class local_course_merge_create_form extends moodleform {
     public function validation($data, $files) {
         global $DB;
         $errors = array();
-        $courses_to_link = $data['link'];
+        $coursestolink = $data['link'];
 
         $maxdepth = get_config('local_course_merge', 'maxcategorydepth');
         if ($maxdepth != COURSE_MERGE_DEPTH_UNLIMITED) {
@@ -104,7 +104,7 @@ class local_course_merge_create_form extends moodleform {
                 $children = $DB->get_fieldset_select('course_categories', 'id', 'parent = ?', array($parent->__get('id')));
                 $validcategories = array_merge($validcategories, $children);
             }
-            $courses = $DB->get_records_list('course', 'id', $courses_to_link, null, 'id,fullname,category');
+            $courses = $DB->get_records_list('course', 'id', $coursestolink, null, 'id,fullname,category');
             foreach ($courses as $course) {
                 if (!in_array($course->category, $validcategories)) {
                     $droppedcourses[] = $course->fullname;
