@@ -59,7 +59,7 @@ Scenario: Teacher lacks permissions by default
 Scenario: Teacher cannot exceed category depth
   When I log in as "teacher2"
   And I follow "Course 2"
-  And I follow "Create merged course shell"
+  And I navigate to "Create merged course shell" node in "Course administration"
   And I set the following fields to these values:
     | Courses to merge  | Course 1 |
     | Course full name  | Test merged course |
@@ -75,7 +75,7 @@ Scenario: Teacher cannot exceed category depth
   And I log out
   And I log in as "teacher2"
   And I follow "Course 2"
-  And I follow "Create merged course shell"
+  And I navigate to "Create merged course shell" node in "Course administration"
   And I set the following fields to these values:
     | Courses to merge  | Course 1 |
     | Course full name  | Test merged course |
@@ -92,7 +92,7 @@ Scenario: Create a new course and hide old courses
   And I log out
   And I log in as "teacher1"
   And I follow "Course 1"
-  And I follow "Create merged course shell"
+  And I navigate to "Create merged course shell" node in "Course administration"
   And I set the following fields to these values:
     | Courses to merge  | Course 3 |
     | Course full name  | Test merged course |
@@ -122,7 +122,7 @@ Scenario: Create a new course and hide old courses
 Scenario: Create new courses with and without groups
   Given I log in as "teacher1"
   And I follow "Course 1"
-  And I follow "Create merged course shell"
+  And I navigate to "Create merged course shell" node in "Course administration"
   And I set the following fields to these values:
     | Courses to merge  | Course 3 |
     | Course full name  | Test merged course |
