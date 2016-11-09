@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 - 2016-11-08
+
+- Tested up to Moodle 3.2 beta
+- Fixed bug which prevented teachers from creating courses in some cases
+
 ## 1.0.0 - 2016-10-27
 
 - Initial stable release
