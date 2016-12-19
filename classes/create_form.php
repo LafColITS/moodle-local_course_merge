@@ -65,9 +65,8 @@ class local_course_merge_create_form extends moodleform {
             $mform->setDefault('shortname', local_course_merge_extract_names::get_default_shortname($coursedata));
             $mform->setDefault('idnumber', local_course_merge_extract_names::get_default_idnumber($coursedata));
 
-            // Prevent teacher from changing templated information.
+            // Prevent teacher from changing templated information (except fullname).
             if (!has_capability('local/course_merge:override_format', context_course::instance($course))) {
-                $mform->hardFreeze('fullname');
                 $mform->hardFreeze('shortname');
                 $mform->hardFreeze('idnumber');
             }
