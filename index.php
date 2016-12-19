@@ -95,15 +95,13 @@ if ($mform->is_cancelled()) {
 
     // Create the groups. We do this separately because the teachers don't
     // have an enrolment yet.
-    if (!empty($data->groupsync) && $data->groupsync) {
-        foreach ($instances as $targetid => $eid) {
-            $update = new stdClass();
-            $update->customint1 = $targetid;
-            $update->customint2 = ENROL_META_CREATE_GROUP;
-            $instance = $DB->get_record('enrol', array('courseid' => $newcourse->id,
-                'enrol' => 'meta', 'id' => $eid), '*', MUST_EXIST);
-            $enrol->update_instance($instance, $update);
-        }
+    foreach ($instances as $targetid => $eid) {
+        $update = new stdClass();
+        $update->customint1 = $targetid;
+        $update->customint2 = ENROL_META_CREATE_GROUP;
+        $instance = $DB->get_record('enrol', array('courseid' => $newcourse->id,
+            'enrol' => 'meta', 'id' => $eid), '*', MUST_EXIST);
+        $enrol->update_instance($instance, $update);
     }
 
     // Hide child courses.

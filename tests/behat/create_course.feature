@@ -119,7 +119,7 @@ Scenario: Create a new course and hide old courses
   And I should not see "Course 3"
 
 @javascript
-Scenario: Create new courses with and without groups
+Scenario: Create new courses with groups
   Given I log in as "teacher1"
   And I follow "Course 1"
   And I navigate to "Create merged course shell" node in "Course administration"

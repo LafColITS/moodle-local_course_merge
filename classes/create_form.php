@@ -55,17 +55,9 @@ class local_course_merge_create_form extends moodleform {
         $mform->addElement('text', 'idnumber', get_string('idnumbercourse'), 'maxlength="100" size="20"');
         $mform->setType('idnumber', PARAM_RAW);
 
-        // Start date.
-        $mform->addElement('date_selector', 'startdate', get_string('startdate'));
-        $mform->setDefault('startdate', $coursedata->startdate);
-
         // Hide child courses.
         $mform->addElement('checkbox', 'hidecourses', get_string('hidecourses', 'local_course_merge'));
         $mform->setDefault('hidecourses', 1);
-
-        // Auto-create groups.
-        $mform->addElement('checkbox', 'groupsync', get_string('groupsync', 'local_course_merge'));
-        $mform->setDefault('groupsync', true);
 
         // Set templated defaults.
         if (get_config('local_course_merge', 'usenametemplates')) {
@@ -82,6 +74,8 @@ class local_course_merge_create_form extends moodleform {
         }
 
         // Metadata.
+        $mform->addElement('hidden', 'startdate', $coursedata->startdate);
+        $mform->setType('startdate', PARAM_INT);
         $mform->addElement('hidden', 'category');
         $mform->setType('category', PARAM_INT);
         $mform->addElement('hidden', 'id', $course);
