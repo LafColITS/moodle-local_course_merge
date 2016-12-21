@@ -1,3 +1,4 @@
+
 Moodle Course Merge Helper
 ==========================
 
@@ -19,6 +20,7 @@ To create a new course go to one of the source courses and click "Create Merged 
 
 * Create the new course with the given settings
 * Create a course meta link enrollment between each source course and the new course
+* Create a group for each source course in the new course
 * Hide the source courses if requested
 * Take you into the new course
 
@@ -58,7 +60,7 @@ The plugin allows the site administrator to define naming conventions for create
 
 Acknowledgements
 ----------------
-This plugin relies heavily on the ajax course selector and related course meta link interface code developed by Damyon Wiese for the Moodle 3.1 release.
+This plugin relies heavily on the AJAX course selector and related course meta link interface code developed by Damyon Wiese for the Moodle 3.1 release.
 
 Author
 ------

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 - 2016-12-21
+
+- Teachers can now modify the course full name on creation
+- Groups will always be created
+- Changed the verbiage for hiding the original courses
+- Removed the option to change the course start date
+
 ## 1.0.1 - 2016-11-08
 
 - Tested up to Moodle 3.2 beta
@@ -19,7 +26,6 @@
 - Ensure that course meta link is enabled
 - Change permissions model to respect core permissions by default
 - Rebrand as "Course Merge Helper"
-
 
 ## 0.1.0 - 2016-05-23
 
