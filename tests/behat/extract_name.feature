@@ -53,9 +53,10 @@ Scenario: Teacher creates course
     And I navigate to "Create merged course shell" node in "Course administration"
     And I set the following fields to these values:
       | Courses to merge | HIST 300.02-FA2016 Foo |
+      | Course full name | HIST 300-FA2016 (Terry Teacher) |
     And I wait until the page is ready
     And I press "Create"
-    And I should see "HIST 300-FA2016 Foo"
+    And I should see "HIST 300-FA2016 (Terry Teacher)"
     And I navigate to "Edit settings" node in "Course administration"
     And the following fields match these values:
       | Course ID number | HIST300.12.201610 |
