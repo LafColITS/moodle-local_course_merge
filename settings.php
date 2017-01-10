@@ -30,9 +30,6 @@ if ($hassiteconfig) {
     $settings = new admin_settingpage('local_course_merge', get_string('pluginname', 'local_course_merge'));
     $ADMIN->add('localplugins', $settings);
 
-    $settings->add(new admin_setting_heading('general', new lang_string('generalsettings', 'local_course_merge'),
-        new lang_string('generalsettingsinfo', 'local_course_merge')));
-
     $settings->add(new admin_setting_configselect(
         'local_course_merge/maxcategorydepth',
         get_string('maxcategorydepth', 'local_course_merge'),
@@ -51,33 +48,6 @@ if ($hassiteconfig) {
     $settings->add(new admin_setting_configcheckbox('local_course_merge/usenametemplates',
         new lang_string('usenametemplates', 'local_course_merge'),
         new lang_string('usenametemplates_desc', 'local_course_merge'), 0));
-
-    $settings->add(new admin_setting_heading('extractname', new lang_string('extractname', 'local_course_merge'),
-        new lang_string('extractnameinfo', 'local_course_merge')));
-
-    $settings->add(new admin_setting_configtext('local_course_merge/extractnametitle',
-        new lang_string('extractnametitle', 'local_course_merge'),
-        new lang_string('extractnametitle_desc', 'local_course_merge'), '', PARAM_NOTAGS));
-
-    $settings->add(new admin_setting_configtext('local_course_merge/extractnamedept',
-        new lang_string('extractnamedept', 'local_course_merge'),
-        new lang_string('extractnamedept_desc', 'local_course_merge'), '', PARAM_NOTAGS));
-
-    $settings->add(new admin_setting_configtext('local_course_merge/extractnamenum',
-        new lang_string('extractnamenum', 'local_course_merge'),
-        new lang_string('extractnamenum_desc', 'local_course_merge'), '', PARAM_NOTAGS));
-
-    $settings->add(new admin_setting_configtext('local_course_merge/extractnameterm',
-        new lang_string('extractnameterm', 'local_course_merge'),
-        new lang_string('extractnameterm_desc', 'local_course_merge'), '', PARAM_NOTAGS));
-
-    $settings->add(new admin_setting_configtext('local_course_merge/extractnamesection',
-        new lang_string('extractnamesection', 'local_course_merge'),
-        new lang_string('extractnamesection_desc', 'local_course_merge'), '', PARAM_NOTAGS));
-
-    $settings->add(new admin_setting_configtext('local_course_merge/extracttermcode',
-        new lang_string('extracttermcode', 'local_course_merge'),
-        new lang_string('extracttermcode_desc', 'local_course_merge'), '', PARAM_NOTAGS));
 
     $settings->add(new admin_setting_configtext('local_course_merge/mergedcoursenameformat',
         get_string('mergedcoursenameformat', 'local_course_merge'),

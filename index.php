@@ -64,7 +64,7 @@ if ($mform->is_cancelled()) {
 
     // The [SECTIONS] variable is supported at this time; we need to post-process the data.
     if (get_config('local_course_merge', 'usenametemplates')) {
-        $data = local_course_merge_extract_names::post_process($data, $coursestolink);
+        $data = local_part_term_extract_names::post_process($data, $coursestolink);
     }
 
     // Final check that this course is unique.
