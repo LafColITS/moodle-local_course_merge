@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 - 2017-04-24
+
+- Updated tests for Moodle 3.3
+
 ## 1.1.0 - 2016-12-21
 
 - Teachers can now modify the course full name on creation
