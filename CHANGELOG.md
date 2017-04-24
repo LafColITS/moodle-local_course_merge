@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.1 - 2017-04-24
+## 1.1.2 - 2017-04-24
 
 - Updated tests for Moodle 3.3
 
