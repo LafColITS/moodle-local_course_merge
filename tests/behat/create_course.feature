@@ -111,7 +111,7 @@ Scenario: Create a new course and hide old courses
   And I should see "Shawn Student"
   And I navigate to "Edit settings" node in "Course administration"
   And I set the following fields to these values:
-    | Visible | Show |
+    | Course visibility | Show |
   And I press "Save and display"
   And I log out
   And I log in as "student3"
