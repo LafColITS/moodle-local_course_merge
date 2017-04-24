@@ -49,7 +49,7 @@ Feature: The course merge helper allows a teacher to create a new course
 @javascript
 Scenario: Teacher creates course
     When I log in as "teacher1"
-    And I follow "HIST 300.01-FA2016 Foo"
+    And I am on "HIST 300.01-FA2016 Foo" course homepage
     And I navigate to "Create merged course shell" node in "Course administration"
     And I set the following fields to these values:
       | Courses to merge | HIST 300.02-FA2016 Foo |

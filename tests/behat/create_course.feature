@@ -52,13 +52,13 @@ Scenario: Teacher lacks permissions by default
   And I press "Save changes"
   And I log out
   And I log in as "teacher1"
-  And I follow "Course 1"
+  And I am on "Course 1" course homepage
   And I should not see "Create merged course shell"
 
 @javascript
 Scenario: Teacher cannot exceed category depth
   When I log in as "teacher2"
-  And I follow "Course 2"
+  And I am on "Course 2" course homepage
   And I navigate to "Create merged course shell" node in "Course administration"
   And I set the following fields to these values:
     | Courses to merge  | Course 1 |
@@ -74,7 +74,7 @@ Scenario: Teacher cannot exceed category depth
   And I press "Save changes"
   And I log out
   And I log in as "teacher2"
-  And I follow "Course 2"
+  And I am on "Course 2" course homepage
   And I navigate to "Create merged course shell" node in "Course administration"
   And I set the following fields to these values:
     | Courses to merge  | Course 1 |
@@ -87,11 +87,12 @@ Scenario: Teacher cannot exceed category depth
 @javascript
 Scenario: Create a new course and hide old courses
   When I log in as "student3"
+  And I click on "Courses" "link" in the "Course overview" "block"
   And I should see "Course 2"
   And I should see "Course 3"
   And I log out
   And I log in as "teacher1"
-  And I follow "Course 1"
+  And I am on "Course 1" course homepage
   And I navigate to "Create merged course shell" node in "Course administration"
   And I set the following fields to these values:
     | Courses to merge  | Course 3 |
@@ -114,6 +115,7 @@ Scenario: Create a new course and hide old courses
   And I press "Save and display"
   And I log out
   And I log in as "student3"
+  And I click on "Courses" "link" in the "Course overview" "block"
   And I should see "Test merged course"
   And I should see "Course 2"
   And I should not see "Course 3"
@@ -121,7 +123,7 @@ Scenario: Create a new course and hide old courses
 @javascript
 Scenario: Create new courses with groups
   Given I log in as "teacher1"
-  And I follow "Course 1"
+  And I am on "Course 1" course homepage
   And I navigate to "Create merged course shell" node in "Course administration"
   And I set the following fields to these values:
     | Courses to merge  | Course 3 |
