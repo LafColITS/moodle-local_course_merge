@@ -45,5 +45,16 @@ $capabilities = array(
             'editingteacher' => CAP_PREVENT,
             'manager'        => CAP_ALLOW
         )
+    ),
+
+    'local/course_merge:categorize_course' => array(
+        'captype'      => 'write',
+        'contextlevel' => CONTEXT_COURSECAT,
+        'archetypes'   => array(
+            'student'        => CAP_PROHIBIT,
+            'teacher'        => CAP_PREVENT,
+            'editingteacher' => CAP_PREVENT,
+            'manager'        => CAP_ALLOW
+        ),
     )
 );

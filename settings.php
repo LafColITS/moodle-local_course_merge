@@ -45,6 +45,14 @@ if ($hassiteconfig) {
         )
     ));
 
+    $categories = local_course_merge_helper::get_category_selector();
+    $settings->add(new admin_setting_configselect('local_course_merge/defaultcategory',
+        new lang_string('defaultcategory', 'local_course_merge'),
+        new lang_string('defaultcategory_desc', 'local_course_merge'),
+        COURSE_MERGE_DEFAULT_CATEGORY,
+        $categories)
+    );
+
     $settings->add(new admin_setting_configcheckbox('local_course_merge/respectpermissions',
         get_string('respectpermissions', 'local_course_merge'), get_string('respectpermissions_desc', 'local_course_merge'), 1));
 

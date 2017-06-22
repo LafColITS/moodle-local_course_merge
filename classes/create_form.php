@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/formslib.php');
 require_once($CFG->libdir . '/coursecatlib.php');
-require('locallib.php');
+require_once('locallib.php');
 
 class local_course_merge_create_form extends moodleform {
 
@@ -33,8 +33,10 @@ class local_course_merge_create_form extends moodleform {
         global $DB;
         $mform = $this->_form;
 
+        // Get category course data and category context.
         $course = $this->_customdata['id'];
         $coursedata = $DB->get_record('course', array('id' => $course), '*', MUST_EXIST);
+        $categorycontext = context_coursecat::instance($coursedata->category);
 
         // Course chooser.
         $options = array('requiredcapabilities' => array('moodle/course:update'), 'multiple' => true, 'exclude' => array($course));
@@ -58,6 +60,16 @@ class local_course_merge_create_form extends moodleform {
         // Hide child courses.
         $mform->addElement('checkbox', 'hidecourses', get_string('hidecourses', 'local_course_merge'));
         $mform->setDefault('hidecourses', 1);
+
+        // Move child courses to a category.
+        if (has_capability('local/course_merge:categorize_course', $categorycontext)) {
+            $categories = local_course_merge_helper::get_category_selector();
+            $mform->addElement('select', 'newchildcategory', get_string('newchildcategory', 'local_course_merge'), $categories);
+            $mform->setDefault('newchildcategory', get_config('local_course_merge', 'defaultcategory'));
+        } else {
+            $mform->addElement('hidden', 'newchildcategory', COURSE_MERGE_DEFAULT_CATEGORY);
+        }
+        $mform->setType('newchildcategory', PARAM_INT);
 
         // Set templated defaults.
         if (get_config('local_course_merge', 'usenametemplates')) {
@@ -87,6 +99,7 @@ class local_course_merge_create_form extends moodleform {
         global $DB;
         $errors = array();
         $coursestolink = $data['link'];
+        $newchildcategory = $data['newchildcategory'];
 
         $maxdepth = get_config('local_course_merge', 'maxcategorydepth');
         if ($maxdepth != COURSE_MERGE_DEPTH_UNLIMITED) {
@@ -105,6 +118,14 @@ class local_course_merge_create_form extends moodleform {
             }
             if (!empty($droppedcourses)) {
                 $errors['link'] = get_string('coursestoodeep', 'local_course_merge', implode(', ', $droppedcourses));
+            }
+        }
+
+        // If the child category is selected, verify that the user has rights there.
+        if ($newchildcategory != COURSE_MERGE_DEFAULT_CATEGORY) {
+            $categorycontext = context_coursecat::instance($newchildcategory);
+            if (!has_capability('local/course_merge:categorize_course', $categorycontext)) {
+                $errors['newchildcategory'] = get_string('childcategorypermissions', 'local_course_merge');
             }
         }
 

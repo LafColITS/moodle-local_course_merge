@@ -24,6 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
+$string['childcategorypermissions'] = 'You do not have permission to move courses into that category';
 $string['course_merge:create_course'] = 'Create merged course shell';
 $string['course_merge:override_format'] = 'Allow override of template format';
 $string['coursemergesamecategory'] = 'Courses in the same category';
@@ -34,6 +35,9 @@ $string['coursenameformat_desc'] = 'Regular expression describing the standard c
 $string['coursestomerge'] = 'Courses to merge';
 $string['coursestoodeep'] = 'The following courses cannot be merged with this course: {$a}';
 $string['create'] = 'Create merged course shell';
+$string['defaultcategory'] = 'Default child course category';
+$string['defaultcategory_desc'] = 'Optionally move child courses into this category by default';
+$string['defaultcategorytop'] = 'Do not move courses by default';
 $string['extractname'] = 'Extract name';
 $string['extractnamedept'] = 'Department';
 $string['extractnamedept_desc'] = 'The department code. Used to populate [DEPT].';
@@ -61,6 +65,7 @@ $string['mergedcoursenameformat_desc'] = 'The format to suggest for a merged cou
 $string['mergedcourseshortnameformat'] = 'Merged course shortname format';
 $string['mergedcourseshortnameformat_desc'] = 'The format to suggest for a merged course shortname.';
 $string['metalinknotenabled'] = 'This tool requires that the Course Meta Link enrolment method be enabled.';
+$string['newchildcategory'] = 'Move child courses to this category';
 $string['pluginname'] = 'Course Merge Helper';
 $string['respectpermissions'] = 'Respect standard permissions';
 $string['respectpermissions_desc'] = 'By default this plugin uses its own capabilities and disregards whether teachers are allowed to create courses. Check this setting to force the plugin to respect those permissions.';
