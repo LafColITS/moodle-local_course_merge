@@ -113,6 +113,11 @@ if ($mform->is_cancelled()) {
         }
     }
 
+    // If set, move child courses.
+    if (!empty($data->newchildcategory) && $data->newchildcategory != COURSE_MERGE_DEFAULT_CATEGORY) {
+        move_courses($coursestolink, $data->newchildcategory);
+    }
+
     // We're done. Go to course.
     $returnurl = new moodle_url('/course/view.php', array('id' => $newcourse->id));
     redirect($returnurl);

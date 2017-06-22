@@ -6,12 +6,13 @@ Feature: The course merge helper allows a teacher to create a new course
 
 Background:
   Given the following "categories" exist:
-    | name       | category | idnumber | visible |
-    | Category 1 | 0        | CAT1     | 0 |
-    | Category 2 | CAT1     | CAT2     | 0 |
-    | Category 3 | CAT1     | CAT3     | 0 |
-    | Category 4 | 0        | CAT4     | 0 |
-    | Category 5 | CAT4     | CAT5     | 0 |
+    | name         | category | idnumber | visible |
+    | Category 1   | 0        | CAT1     | 0 |
+    | Category 2   | CAT1     | CAT2     | 0 |
+    | Category 3   | CAT1     | CAT3     | 0 |
+    | Category 4   | 0        | CAT4     | 0 |
+    | Category 5   | CAT4     | CAT5     | 0 |
+    | Hidden stuff | 0        |          | 1 |
   And the following "courses" exist:
     | fullname | shortname | category | visible |
     | Course 1 | C1        | CAT2     | 1 |
@@ -133,3 +134,27 @@ Scenario: Create new courses with groups
   And I navigate to "Groups" node in "Course administration > Users"
   And I should see "Course 1 course (4)"
   And I should see "Course 3 course (3)"
+
+@javascript
+Scenario: Create a new course and move the old courses
+  Given I log in as "admin"
+  And I navigate to "Course Merge Helper" node in "Site administration > Plugins > Local plugins"
+  And I set the field "Default child course category" to "Hidden stuff"
+  And I press "Save changes"
+  And I am on "Course 1" course homepage
+  And I navigate to "Create merged course shell" node in "Course administration"
+  And I set the following fields to these values:
+    | Courses to merge                    | Course 3           |
+    | Course full name                    | Test merged course |
+    | Course short name                   | Test course        |
+    | Course ID number                    | C4                 |
+    | Move child courses to this category | Hidden stuff       |
+  And I press "Create"
+  And I should see "Test merged course"
+  And I go to the courses management page
+  And I follow "Miscellaneous"
+  And I should not see "Course 1"
+  And I should not see "Course 3"
+  And I follow "Hidden stuff"
+  And I should see "Course 1"
+  And I should see "Course 3"

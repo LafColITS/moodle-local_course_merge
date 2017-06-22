@@ -23,6 +23,8 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
+require_once($CFG->dirroot . '/local/course_merge/locallib.php');
+
 class local_course_merge_helper {
     public static function course_exists($course, $url) {
         global $DB;
@@ -44,5 +46,11 @@ class local_course_merge_helper {
     public static function get_parent_coursecat($category) {
         $parents = coursecat::get($category, MUST_EXIST, true)->get_parents();
         return coursecat::get(end($parents), MUST_EXIST, true);
+    }
+
+    public static function get_category_selector() {
+        $categories = coursecat::make_categories_list();
+        $default = array(COURSE_MERGE_DEFAULT_CATEGORY  => get_string('defaultcategorytop', 'local_course_merge'));
+        return $default + $categories;
     }
 }
