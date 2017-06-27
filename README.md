@@ -22,6 +22,7 @@ To create a new course go to one of the source courses and click "Create Merged 
 * Create a course meta link enrollment between each source course and the new course
 * Create a group for each source course in the new course
 * Hide the source courses if requested
+* Move the source courses into a designated category, if requested
 * Take you into the new course
 
 Configuration

@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.3.0 - 2017-06-27
+
+- Changed version numbering to match stable version
+- Managers may now move source courses into a designated category
+
 ## 1.1.2 - 2017-04-24
 
 - Updated tests for Moodle 3.3
