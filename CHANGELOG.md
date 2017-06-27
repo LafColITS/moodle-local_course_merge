@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.1.0 - 2017-06-27
+
+- Changed version numbering to match stable version
+- Managers may now move source courses into a designated category
+
 ## 1.1.0 - 2016-12-21
 
 - Teachers can now modify the course full name on creation
