@@ -23,7 +23,6 @@
  */
 
 require_once(dirname(__FILE__) . '/../../config.php');
-require_once($CFG->dirroot.'/enrol/meta/locallib.php');
 
 $id     = required_param('id', PARAM_INT);
 $course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
@@ -70,52 +69,17 @@ if ($mform->is_cancelled()) {
     // Final check that this course is unique.
     local_course_merge_helper::course_exists($data, new moodle_url('/course/view.php', array('id' => $course->id)));
 
-    // Setup course.
-    $tocreate = new stdClass();
-    $tocreate->category  = $course->category;
-    $tocreate->startdate = $data->startdate;
-    $tocreate->fullname  = $data->fullname;
-    $tocreate->shortname = $data->shortname;
-    $tocreate->idnumber  = $data->idnumber;
-    $tocreate->visible   = 0;
-
-    // Create the course.
-    $newcourse = create_course($tocreate);
-    if (!$newcourse) {
-        die('Course not created');
-    }
-
-    // Create all the meta links.
-    $enrol = enrol_get_plugin('meta');
-    $instances = array();
-    foreach ($coursestolink as $target) {
-        $instances[$target] = $enrol->add_instance($newcourse, array('customint1' => $target));
-        enrol_meta_sync($newcourse->id);
-    }
-
-    // Create the groups. We do this separately because the teachers don't
-    // have an enrolment yet.
-    foreach ($instances as $targetid => $eid) {
-        $update = new stdClass();
-        $update->customint1 = $targetid;
-        $update->customint2 = ENROL_META_CREATE_GROUP;
-        $instance = $DB->get_record('enrol', array('courseid' => $newcourse->id,
-            'enrol' => 'meta', 'id' => $eid), '*', MUST_EXIST);
-        $enrol->update_instance($instance, $update);
-    }
+    // Merge the courses.
+    $newcourse = local_course_merge\merge_course::create_course($data, $coursestolink);
 
     // Hide child courses.
     if (!empty($data->hidecourses) && $data->hidecourses) {
-        foreach ($coursestolink as $oldcourseid) {
-            $oldcourse = course_get_format($oldcourseid)->get_course();
-            $oldcourse->visible = 0;
-            update_course($oldcourse);
-        }
+        local_course_merge\merge_course::hide_courses($coursestolink);
     }
 
     // If set, move child courses.
     if (!empty($data->newchildcategory) && $data->newchildcategory != COURSE_MERGE_DEFAULT_CATEGORY) {
-        move_courses($coursestolink, $data->newchildcategory);
+        local_course_merge\merge_course::move_courses($coursestolink, $data->newchildcategory);
     }
 
     // We're done. Go to course.
