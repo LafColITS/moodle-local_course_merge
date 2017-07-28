@@ -21,35 +21,38 @@
  * @copyright 2016 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+namespace local_course_merge;
+
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/local/course_merge/locallib.php');
 
-class local_course_merge_helper {
+class helper {
     public static function course_exists($course, $url) {
         global $DB;
 
         if ($DB->record_exists('course', array('shortname' => $course->shortname))) {
-            throw new moodle_exception('shortnameexists', 'local_course_merge', $url, $course->shortname);
+            throw new \moodle_exception('shortnameexists', 'local_course_merge', $url, $course->shortname);
         }
 
         if (!empty($course->idnumber) && $DB->record_exists('course', array('idnumber' => $course->idnumber))) {
-            throw new moodle_exception('idnumberexists', 'local_course_merge', $url, $course->idnumber);
+            throw new \moodle_exception('idnumberexists', 'local_course_merge', $url, $course->idnumber);
         }
     }
 
     public static function meta_link_enabled() {
-        $enrolplugins = core_plugin_manager::instance()->get_enabled_plugins('enrol');
+        $enrolplugins = \core_plugin_manager::instance()->get_enabled_plugins('enrol');
         return array_key_exists('meta', $enrolplugins);
     }
 
     public static function get_parent_coursecat($category) {
-        $parents = coursecat::get($category, MUST_EXIST, true)->get_parents();
-        return coursecat::get(end($parents), MUST_EXIST, true);
+        $parents = \coursecat::get($category, MUST_EXIST, true)->get_parents();
+        return \coursecat::get(end($parents), MUST_EXIST, true);
     }
 
     public static function get_category_selector() {
-        $categories = coursecat::make_categories_list();
+        $categories = \coursecat::make_categories_list();
         $default = array(COURSE_MERGE_DEFAULT_CATEGORY  => get_string('defaultcategorytop', 'local_course_merge'));
         return $default + $categories;
     }

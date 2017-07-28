@@ -21,9 +21,12 @@
  * @copyright 2016 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+namespace local_course_merge;
+
 defined('MOODLE_INTERNAL') || die();
 
-class local_course_merge_extract_names {
+class extract_names {
 
     public static function get_default_fullname($course) {
         $fullname = get_config('local_course_merge', 'mergedcoursenameformat');

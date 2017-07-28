@@ -22,12 +22,14 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace local_course_merge;
+
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/formslib.php');
 require_once($CFG->libdir . '/coursecatlib.php');
 require_once('locallib.php');
 
-class local_course_merge_create_form extends moodleform {
+class create_form extends \moodleform {
 
     public function definition() {
         global $DB;
@@ -36,7 +38,7 @@ class local_course_merge_create_form extends moodleform {
         // Get category course data and category context.
         $course = $this->_customdata['id'];
         $coursedata = $DB->get_record('course', array('id' => $course), '*', MUST_EXIST);
-        $categorycontext = context_coursecat::instance($coursedata->category);
+        $categorycontext = \context_coursecat::instance($coursedata->category);
 
         // Course chooser.
         $options = array('requiredcapabilities' => array('moodle/course:update'), 'multiple' => true, 'exclude' => array($course));
@@ -63,7 +65,7 @@ class local_course_merge_create_form extends moodleform {
 
         // Move child courses to a category.
         if (has_capability('local/course_merge:categorize_course', $categorycontext)) {
-            $categories = local_course_merge_helper::get_category_selector();
+            $categories = helper::get_category_selector();
             $mform->addElement('select', 'newchildcategory', get_string('newchildcategory', 'local_course_merge'), $categories);
             $mform->setDefault('newchildcategory', get_config('local_course_merge', 'defaultcategory'));
         } else {
@@ -73,12 +75,12 @@ class local_course_merge_create_form extends moodleform {
 
         // Set templated defaults.
         if (get_config('local_course_merge', 'usenametemplates')) {
-            $mform->setDefault('fullname', local_course_merge_extract_names::get_default_fullname($coursedata));
-            $mform->setDefault('shortname', local_course_merge_extract_names::get_default_shortname($coursedata));
-            $mform->setDefault('idnumber', local_course_merge_extract_names::get_default_idnumber($coursedata));
+            $mform->setDefault('fullname', extract_names::get_default_fullname($coursedata));
+            $mform->setDefault('shortname', extract_names::get_default_shortname($coursedata));
+            $mform->setDefault('idnumber', extract_names::get_default_idnumber($coursedata));
 
             // Prevent teacher from changing templated information (except fullname).
-            if (!has_capability('local/course_merge:override_format', context_course::instance($course))) {
+            if (!has_capability('local/course_merge:override_format', \context_course::instance($course))) {
                 $mform->hardFreeze('shortname');
                 $mform->hardFreeze('idnumber');
             }
@@ -106,7 +108,7 @@ class local_course_merge_create_form extends moodleform {
             $droppedcourses = array();
             $validcategories = array($data['category']);
             if ($maxdepth == COURSE_MERGE_DEPTH_SAME_PARENT) {
-                $parent = local_course_merge_helper::get_parent_coursecat($data['category']);
+                $parent = helper::get_parent_coursecat($data['category']);
                 $children = $DB->get_fieldset_select('course_categories', 'id', 'parent = ?', array($parent->__get('id')));
                 $validcategories = array_merge($validcategories, $children);
             }
@@ -123,7 +125,7 @@ class local_course_merge_create_form extends moodleform {
 
         // If the child category is selected, verify that the user has rights there.
         if ($newchildcategory != COURSE_MERGE_DEFAULT_CATEGORY) {
-            $categorycontext = context_coursecat::instance($newchildcategory);
+            $categorycontext = \context_coursecat::instance($newchildcategory);
             if (!has_capability('local/course_merge:categorize_course', $categorycontext)) {
                 $errors['newchildcategory'] = get_string('childcategorypermissions', 'local_course_merge');
             }

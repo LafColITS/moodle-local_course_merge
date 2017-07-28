@@ -43,7 +43,7 @@ if (get_config('local_course_merge', 'respectpermissions')) {
 }
 
 // Course meta link has to be active.
-if (!local_course_merge_helper::meta_link_enabled()) {
+if (!local_course_merge\helper::meta_link_enabled()) {
     $returnurl = new moodle_url('/course/view.php', array('id' => $course->id));
     print_error('metalinknotenabled', 'local_course_merge');
 }
@@ -52,7 +52,7 @@ if (!local_course_merge_helper::meta_link_enabled()) {
 $PAGE->set_title(get_string('create', 'local_course_merge'));
 $PAGE->set_heading(get_string('create', 'local_course_merge'));
 
-$mform = new local_course_merge_create_form('index.php', array('id' => $course->id)); // Creation form.
+$mform = new local_course_merge\create_form('index.php', array('id' => $course->id)); // Creation form.
 
 if ($mform->is_cancelled()) {
     $returnurl = new moodle_url('/course/view.php', array('id' => $course->id));
@@ -63,11 +63,11 @@ if ($mform->is_cancelled()) {
 
     // The [SECTIONS] variable is supported at this time; we need to post-process the data.
     if (get_config('local_course_merge', 'usenametemplates')) {
-        $data = local_course_merge_extract_names::post_process($data, $coursestolink);
+        $data = local_course_merge\extract_names::post_process($data, $coursestolink);
     }
 
     // Final check that this course is unique.
-    local_course_merge_helper::course_exists($data, new moodle_url('/course/view.php', array('id' => $course->id)));
+    local_course_merge\helper::course_exists($data, new moodle_url('/course/view.php', array('id' => $course->id)));
 
     // Merge the courses.
     $newcourse = local_course_merge\merge_course::create_course($data, $coursestolink);
