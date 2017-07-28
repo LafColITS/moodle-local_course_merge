@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.1 - 2017-07-28
+
+- New courses are created with the source courses' end date, if set
+- Added PHPUnit tests
+- Miscellaneous code cleanup
+
 ## 3.3.0 - 2017-06-27
 
 - Changed version numbering to match stable version
