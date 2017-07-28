@@ -54,10 +54,8 @@ class merge_course {
             $tocreate->enddate = $data->enddate;
         }
 
+        // We don't check for errors; create_course() will throw an exception.
         $newcourse = create_course($tocreate);
-        if (!$newcourse) {
-            die('Course not created');
-        }
 
         // Create the metalinks.
         $instances = self::link_courses($newcourse, $coursestolink);
