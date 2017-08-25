@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.1 - 2017-08-25
+
+- Added missing language string
+
 ## 3.1.0 - 2017-06-27
 
 - Changed version numbering to match stable version
