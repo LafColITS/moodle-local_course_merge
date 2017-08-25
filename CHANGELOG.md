@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.3.2 - 2017-08-25
+
+- Added missing language string
+
 ## 3.3.1 - 2017-07-28
 
 - New courses are created with the source courses' end date, if set
