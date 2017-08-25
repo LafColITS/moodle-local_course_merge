@@ -25,6 +25,7 @@
 defined('MOODLE_INTERNAL') || die;
 
 $string['childcategorypermissions'] = 'You do not have permission to move courses into that category';
+$string['course_merge:categorize_course'] = 'Recategorize source courses';
 $string['course_merge:create_course'] = 'Create merged course shell';
 $string['course_merge:override_format'] = 'Allow override of template format';
 $string['coursemergesamecategory'] = 'Courses in the same category';
