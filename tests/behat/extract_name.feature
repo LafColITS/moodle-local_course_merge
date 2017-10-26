@@ -10,7 +10,7 @@ Feature: The course merge helper allows a teacher to create a new course
       | Fall 2016  | 0        | CAT1     |
       | History    | CAT1     | CAT2     |
     And the following "courses" exist:
-      | fullname                                                             | shortname             | category | idnumber    |
+      | fullname               | shortname             | category | idnumber    |
       | HIST 300.01-FA2016 Foo | HIST 300.01-Fall 2016 | CAT2     | 1000.201610 |
       | HIST 300.02-FA2016 Foo | HIST 300.02-Fall 2016 | CAT2     | 1001.201610 |
     And the following "users" exist:
