@@ -1,5 +1,5 @@
 @local @local_course_merge
-Feature: The course merge helper allows a teacher to create a new course
+Feature: The course merge helper allows a manager to enforce a naming convention
   In order to create a new merged course with a standard name
   As a teacher or administrator
   I need to define a standard naming convention
@@ -46,8 +46,8 @@ Feature: The course merge helper allows a teacher to create a new course
     And I press "Save changes"
     And I log out
 
-@javascript
-Scenario: Teacher creates course
+  @javascript
+  Scenario: Teacher creates course
     When I log in as "teacher1"
     And I am on "HIST 300.01-FA2016 Foo" course homepage
     And I navigate to "Create merged course shell" node in "Course administration"
