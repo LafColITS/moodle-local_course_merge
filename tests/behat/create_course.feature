@@ -14,10 +14,10 @@ Feature: The course merge helper allows a teacher to create a new course
       | Category 5   | CAT4     | CAT5     | 0 |
       | Hidden stuff | 0        |          | 1 |
     And the following "courses" exist:
-      | fullname | shortname | category | visible |
-      | Course 1 | C1        | CAT2     | 1 |
-      | Course 2 | C2        | CAT5     | 1 |
-      | Course 3 | C3        | CAT3     | 1 |
+      | fullname | shortname | category | visible | startdate | enddate |
+      | Course 1 | C1        | CAT2     | 1 | 1514764800 | 0 |
+      | Course 2 | C2        | CAT5     | 1 | 1514764800 | 0 |
+      | Course 3 | C3        | CAT3     | 1 | 1514764800 | 1522540800 |
     And the following "users" exist:
       | username | firstname | lastname | email |
       | teacher1 | Terry | Teacher | teacher1@example.com |
@@ -160,3 +160,22 @@ Feature: The course merge helper allows a teacher to create a new course
     And I follow "Hidden stuff"
     And I should see "Course 1"
     And I should see "Course 3"
+
+  @javascript
+  Scenario: Create a new course with the same end date
+    Given I log in as "teacher1"
+    And I am on "Course 3" course homepage
+    And I navigate to "Create merged course shell" node in "Course administration"
+    And I set the following fields to these values:
+      | Courses to merge  | Course 1 |
+      | Course full name  | Test merged course |
+      | Course short name | Test course        |
+      | Course ID number  | C4                 |
+    And I press "Create"
+    And I should see "Test merged course"
+    And I navigate to "Edit settings" node in "Course administration"
+    And the following fields match these values:
+      | id_enddate_day       | 1       |
+      | id_enddate_month     | April   |
+      | id_enddate_year      | 2018    |
+      | id_enddate_enabled   | 1       |

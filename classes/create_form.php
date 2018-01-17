@@ -89,6 +89,8 @@ class create_form extends \moodleform {
         // Metadata.
         $mform->addElement('hidden', 'startdate', $coursedata->startdate);
         $mform->setType('startdate', PARAM_INT);
+        $mform->addElement('hidden', 'enddate', $coursedata->enddate);
+        $mform->setType('enddate', PARAM_INT);
         $mform->addElement('hidden', 'category');
         $mform->setType('category', PARAM_INT);
         $mform->addElement('hidden', 'id', $course);
