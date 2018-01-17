@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.3.3 - 2018-01-17
+
+- Fixed bug in which new courses end dates were not actually set.
+
 ## 3.3.2 - 2017-08-25
 
 - Added missing language string
