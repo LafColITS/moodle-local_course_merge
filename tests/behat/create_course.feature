@@ -90,6 +90,7 @@ Feature: The course merge helper allows a teacher to create a new course
     When I log in as "student3"
     And I click on "Courses" "link" in the "Course overview" "block"
     And I should see "Course 2"
+    And I click on "Past" "link" in the "Course overview" "block"
     And I should see "Course 3"
     And I log out
     And I log in as "teacher1"
