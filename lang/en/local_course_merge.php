@@ -68,6 +68,7 @@ $string['mergedcourseshortnameformat_desc'] = 'The format to suggest for a merge
 $string['metalinknotenabled'] = 'This tool requires that the Course Meta Link enrolment method be enabled.';
 $string['newchildcategory'] = 'Move child courses to this category';
 $string['pluginname'] = 'Course Merge Helper';
+$string['privacy:metadata'] = 'The Course Merge Helper plugin does not store any personal data.';
 $string['respectpermissions'] = 'Respect standard permissions';
 $string['respectpermissions_desc'] = 'By default this plugin uses its own capabilities and disregards whether teachers are allowed to create courses. Check this setting to force the plugin to respect those permissions.';
 $string['shortnameexists'] = 'Could not create merged course: a course with the shortname {$a} already exists.';
