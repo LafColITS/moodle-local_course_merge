@@ -15,15 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Privacy implementation for local_course_merge.
+ *
  * @package   local_course_merge
- * @copyright 2016 Lafayette College ITS
+ * @copyright 2018 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace local_course_merge\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018011700;
-$plugin->requires  = 2017111300;
-$plugin->component = 'local_course_merge';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = 'v3.3.3';
+class provider implements
+    // This plugin does not store any personal user data.
+    \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}
