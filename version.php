@@ -22,8 +22,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018011700;
+$plugin->version   = 2018011701;
 $plugin->requires  = 2017051500;
 $plugin->component = 'local_course_merge';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = 'v3.3.3';
+$plugin->release   = 'v3.3.4';
