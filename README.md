@@ -8,7 +8,7 @@ This local module allows teachers to create a new course from existing courses u
 
 Requirements
 ------------
-- Moodle 3.3 (build 2017051500 or later)
+- Moodle 3.4 (build 2017111300 or later)
 
 Installation
 ------------

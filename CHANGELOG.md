@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.4.0 - 2018-05-13
+
+- Updated for GDPR compliance
+
 ## 3.3.3 - 2018-01-17
 
 - Fixed bug in which new courses end dates were not actually set.
