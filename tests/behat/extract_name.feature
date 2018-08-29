@@ -29,9 +29,9 @@ Feature: The course merge helper allows a manager to enforce a naming convention
       | student3 | HIST 300.02-Fall 2016 | student        |
       | student4 | HIST 300.02-Fall 2016 | student        |
     And I log in as "admin"
-    And I navigate to "Manage enrol plugins" node in "Site administration > Plugins > Enrolments"
+    And I navigate to "Plugins > Enrolments > Manage enrol plugins" in site administration
     And I click on "Enable" "link" in the "Course meta link" "table_row"
-    And I navigate to "Course Merge Helper" node in "Site administration > Plugins > Local plugins"
+    And I navigate to "Plugins > Local plugins > Course Merge Helper" in site administration
     And I set the field "Respect standard permissions" to "0"
     And I set the field "Use name templates" to "1"
     And I set the field "Course title" to "/[A-Z]+\s[0-9]+\.[0-9]+-[A-Za-z]+[0-9]{4,}\s(.*)/"
@@ -50,13 +50,13 @@ Feature: The course merge helper allows a manager to enforce a naming convention
   Scenario: Teacher creates course
     When I log in as "teacher1"
     And I am on "HIST 300.01-FA2016 Foo" course homepage
-    And I navigate to "Create merged course shell" node in "Course administration"
+    And I navigate to "Create merged course shell" in current page administration
     And I set the following fields to these values:
       | Courses to merge | HIST 300.02-FA2016 Foo |
       | Course full name | HIST 300-FA2016 (Terry Teacher) |
     And I wait until the page is ready
     And I press "Create"
     And I should see "HIST 300-FA2016 (Terry Teacher)"
-    And I navigate to "Edit settings" node in "Course administration"
+    And I navigate to "Edit settings" in current page administration
     And the following fields match these values:
       | Course ID number | HIST300.12.201610 |

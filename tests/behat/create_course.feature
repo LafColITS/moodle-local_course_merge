@@ -39,16 +39,16 @@ Feature: The course merge helper allows a teacher to create a new course
       | student3 | C3     | student        |
       | student4 | C3     | student        |
     And I log in as "admin"
-    And I navigate to "Manage enrol plugins" node in "Site administration > Plugins > Enrolments"
+    And I navigate to "Plugins > Enrolments > Manage enrol plugins" in site administration
     And I click on "Enable" "link" in the "Course meta link" "table_row"
-    And I navigate to "Course Merge Helper" node in "Site administration > Plugins > Local plugins"
+    And I navigate to "Plugins > Local plugins > Course Merge Helper" in site administration
     And I set the field "Respect standard permissions" to "0"
     And I press "Save changes"
     And I log out
 
   Scenario: Teacher lacks permissions by default
     When I log in as "admin"
-    And I navigate to "Course Merge Helper" node in "Site administration > Plugins > Local plugins"
+    And I navigate to "Plugins > Local plugins > Course Merge Helper" in site administration
     And I set the field "Respect standard permissions" to "1"
     And I press "Save changes"
     And I log out
@@ -60,7 +60,7 @@ Feature: The course merge helper allows a teacher to create a new course
   Scenario: Teacher cannot exceed category depth
     When I log in as "teacher2"
     And I am on "Course 2" course homepage
-    And I navigate to "Create merged course shell" node in "Course administration"
+    And I navigate to "Create merged course shell" in current page administration
     And I set the following fields to these values:
       | Courses to merge  | Course 1 |
       | Course full name  | Test merged course |
@@ -70,13 +70,13 @@ Feature: The course merge helper allows a teacher to create a new course
     And I should see "The following courses cannot be merged with this course: Course 1"
     And I log out
     And I log in as "admin"
-    And I navigate to "Course Merge Helper" node in "Site administration > Plugins > Local plugins"
+    And I navigate to "Plugins > Local plugins > Course Merge Helper" in site administration
     And I set the field "Maximum category depth" to "No restrictions"
     And I press "Save changes"
     And I log out
     And I log in as "teacher2"
     And I am on "Course 2" course homepage
-    And I navigate to "Create merged course shell" node in "Course administration"
+    And I navigate to "Create merged course shell" in current page administration
     And I set the following fields to these values:
       | Courses to merge  | Course 1 |
       | Course full name  | Test merged course |
@@ -95,7 +95,7 @@ Feature: The course merge helper allows a teacher to create a new course
     And I log out
     And I log in as "teacher1"
     And I am on "Course 1" course homepage
-    And I navigate to "Create merged course shell" node in "Course administration"
+    And I navigate to "Create merged course shell" in current page administration
     And I set the following fields to these values:
       | Courses to merge  | Course 3 |
       | Course full name  | Test merged course |
@@ -103,15 +103,15 @@ Feature: The course merge helper allows a teacher to create a new course
       | Course ID number  | C4                 |
     And I press "Create"
     And I should see "Test merged course"
-    And I navigate to "Enrolment methods" node in "Course administration > Users"
+    And I navigate to "Users > Enrolment methods" in current page administration
     And I should see "Course meta link (Course 1)"
     And I should see "Course meta link (Course 3)"
-    And I navigate to "Enrolled users" node in "Course administration > Users"
+    And I navigate to "Users > Enrolled users" in current page administration
     And I should see "Sally Student"
     And I should see "Steve Student"
     And I should see "Sadie Student"
     And I should see "Shawn Student"
-    And I navigate to "Edit settings" node in "Course administration"
+    And I navigate to "Edit settings" in current page administration
     And I set the following fields to these values:
       | Course visibility | Show |
     And I press "Save and display"
@@ -126,7 +126,7 @@ Feature: The course merge helper allows a teacher to create a new course
   Scenario: Create new courses with groups
     Given I log in as "teacher1"
     And I am on "Course 1" course homepage
-    And I navigate to "Create merged course shell" node in "Course administration"
+    And I navigate to "Create merged course shell" in current page administration
     And I set the following fields to these values:
       | Courses to merge  | Course 3 |
       | Course full name  | Test merged course |
@@ -134,18 +134,18 @@ Feature: The course merge helper allows a teacher to create a new course
       | Course ID number  | C4                 |
     And I press "Create"
     And I should see "Test merged course"
-    And I navigate to "Groups" node in "Course administration > Users"
+    And I navigate to "Users > Groups" in current page administration
     And I should see "Course 1 course (4)"
     And I should see "Course 3 course (3)"
 
   @javascript
   Scenario: Create a new course and move the old courses
     Given I log in as "admin"
-    And I navigate to "Course Merge Helper" node in "Site administration > Plugins > Local plugins"
+    And I navigate to "Plugins > Local plugins > Course Merge Helper" in site administration
     And I set the field "Default child course category" to "Hidden stuff"
     And I press "Save changes"
     And I am on "Course 1" course homepage
-    And I navigate to "Create merged course shell" node in "Course administration"
+    And I navigate to "Create merged course shell" in current page administration
     And I set the following fields to these values:
       | Courses to merge                    | Course 3           |
       | Course full name                    | Test merged course |
@@ -166,7 +166,7 @@ Feature: The course merge helper allows a teacher to create a new course
   Scenario: Create a new course with the same end date
     Given I log in as "teacher1"
     And I am on "Course 3" course homepage
-    And I navigate to "Create merged course shell" node in "Course administration"
+    And I navigate to "Create merged course shell" in current page administration
     And I set the following fields to these values:
       | Courses to merge  | Course 1 |
       | Course full name  | Test merged course |
@@ -174,7 +174,7 @@ Feature: The course merge helper allows a teacher to create a new course
       | Course ID number  | C4                 |
     And I press "Create"
     And I should see "Test merged course"
-    And I navigate to "Edit settings" node in "Course administration"
+    And I navigate to "Edit settings" in current page administration
     And the following fields match these values:
       | id_enddate_day       | 1       |
       | id_enddate_month     | April   |
