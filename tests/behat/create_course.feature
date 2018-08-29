@@ -106,11 +106,13 @@ Feature: The course merge helper allows a teacher to create a new course
     And I navigate to "Users > Enrolment methods" in current page administration
     And I should see "Course meta link (Course 1)"
     And I should see "Course meta link (Course 3)"
+    And I am on "Test merged course" course homepage
     And I navigate to "Users > Enrolled users" in current page administration
     And I should see "Sally Student"
     And I should see "Steve Student"
     And I should see "Sadie Student"
     And I should see "Shawn Student"
+    And I am on "Test merged course" course homepage
     And I navigate to "Edit settings" in current page administration
     And I set the following fields to these values:
       | Course visibility | Show |
