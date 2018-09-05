@@ -47,12 +47,12 @@ class helper {
     }
 
     public static function get_parent_coursecat($category) {
-        $parents = \coursecat::get($category, MUST_EXIST, true)->get_parents();
-        return \coursecat::get(end($parents), MUST_EXIST, true);
+        $parents = \core_course_category::get($category, MUST_EXIST, true)->get_parents();
+        return \core_course_category::get(end($parents), MUST_EXIST, true);
     }
 
     public static function get_category_selector() {
-        $categories = \coursecat::make_categories_list();
+        $categories = \core_course_category::make_categories_list();
         $default = array(COURSE_MERGE_DEFAULT_CATEGORY  => get_string('defaultcategorytop', 'local_course_merge'));
         return $default + $categories;
     }

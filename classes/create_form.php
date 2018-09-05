@@ -26,7 +26,6 @@ namespace local_course_merge;
 
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/formslib.php');
-require_once($CFG->libdir . '/coursecatlib.php');
 require_once('locallib.php');
 
 class create_form extends \moodleform {

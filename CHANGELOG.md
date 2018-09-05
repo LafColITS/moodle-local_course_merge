@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Update internal API in light of [MDL-62742](https://tracker.moodle.org/browse/MDL-62742)
+
 ## 3.4.0 - 2018-05-13
 
 - Updated for GDPR compliance
