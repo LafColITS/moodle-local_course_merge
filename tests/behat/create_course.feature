@@ -89,9 +89,9 @@ Feature: The course merge helper allows a teacher to create a new course
   Scenario: Create a new course and hide old courses
     When I log in as "student3"
     And I should see "Course 2"
-    And I click on "In progress" "button" in the "Course overview" "block"
-    And I click on "Past" "link" in the "Course overview" "block"
-    And I should see "Course 3"
+    And I click on "All" "button" in the "Course overview" "block"
+    When I click on "Past" "link" in the "Course overview" "block"
+    Then I should see "Course 3"
     And I log out
     And I log in as "teacher1"
     And I am on "Course 1" course homepage
@@ -119,7 +119,9 @@ Feature: The course merge helper allows a teacher to create a new course
     And I press "Save and display"
     And I log out
     And I log in as "student3"
-    And I should see "Test merged course"
+    And I click on "Past" "button" in the "Course overview" "block"
+    When I click on "In progress" "link" in the "Course overview" "block"
+    Then I should see "Test merged course"
     And I should see "Course 2"
     And I should not see "Course 3"
 
