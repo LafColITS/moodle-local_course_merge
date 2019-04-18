@@ -39,6 +39,10 @@ class create_form extends \moodleform {
         $coursedata = $DB->get_record('course', array('id' => $course), '*', MUST_EXIST);
         $categorycontext = \context_coursecat::instance($coursedata->category);
 
+        // Fieldset wrapper.
+        $mform->addElement('header', 'wrapper', get_string('create_form:fieldset:wrapper', 'local_course_merge'));
+        $mform->setExpanded('wrapper');
+
         // Course chooser.
         $options = array('requiredcapabilities' => array('moodle/course:update'), 'multiple' => true, 'exclude' => array($course));
         $mform->addElement('course', 'link', get_string('coursestomerge', 'local_course_merge'), $options);
@@ -53,14 +57,17 @@ class create_form extends \moodleform {
         $mform->addElement('text', 'shortname', get_string('shortnamecourse'), 'maxlength="100" size="20"');
         $mform->setType('shortname', PARAM_TEXT);
         $mform->addRule('shortname', null, 'required', null, 'client');
+        $mform->setAdvanced('shortname');
 
         // ID number.
         $mform->addElement('text', 'idnumber', get_string('idnumbercourse'), 'maxlength="100" size="20"');
         $mform->setType('idnumber', PARAM_RAW);
+        $mform->setAdvanced('idnumber');
 
         // Hide child courses.
         $mform->addElement('checkbox', 'hidecourses', get_string('hidecourses', 'local_course_merge'));
         $mform->setDefault('hidecourses', 1);
+        $mform->setAdvanced('hidecourses');
 
         // Move child courses to a category.
         if (has_capability('local/course_merge:categorize_course', $categorycontext)) {
@@ -71,6 +78,7 @@ class create_form extends \moodleform {
             $mform->addElement('hidden', 'newchildcategory', COURSE_MERGE_DEFAULT_CATEGORY);
         }
         $mform->setType('newchildcategory', PARAM_INT);
+        $mform->setAdvanced('newchildcategory');
 
         // Set templated defaults.
         if (get_config('local_course_merge', 'usenametemplates')) {
