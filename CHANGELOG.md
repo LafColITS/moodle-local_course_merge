@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Set most fields to advanced by default
+
 ## 3.6.0 - 2018-11-27
 
 - Update internal API in light of [MDL-62742](https://tracker.moodle.org/browse/MDL-62742)
