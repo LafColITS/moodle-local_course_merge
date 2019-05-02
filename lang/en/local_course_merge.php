@@ -36,6 +36,7 @@ $string['coursenameformat_desc'] = 'Regular expression describing the standard c
 $string['coursestomerge'] = 'Courses to merge';
 $string['coursestoodeep'] = 'The following courses cannot be merged with this course: {$a}';
 $string['create'] = 'Create merged course shell';
+$string['create_form:fieldset:wrapper'] = 'Merged course options';
 $string['defaultcategory'] = 'Default child course category';
 $string['defaultcategory_desc'] = 'Optionally move child courses into this category by default';
 $string['defaultcategorytop'] = 'Do not move courses by default';
