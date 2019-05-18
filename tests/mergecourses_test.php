@@ -29,6 +29,12 @@ global $CFG;
 
 require_once($CFG->dirroot.'/local/course_merge/locallib.php');
 
+/**
+ * Unit tests for the course merge helper
+ * @package    local_course_merge
+ * @copyright  2017 Lafayette College ITS
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class local_course_merge_mergecourses_testcase extends advanced_testcase {
     public function test_course_merge() {
         global $DB;

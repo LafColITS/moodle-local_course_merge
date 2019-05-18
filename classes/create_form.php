@@ -28,8 +28,18 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/formslib.php');
 require_once('locallib.php');
 
+/**
+ * Form definition for creating a merged class.
+ *
+ * @package   local_course_merge
+ * @copyright 2016 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class create_form extends \moodleform {
 
+    /**
+     * Actual definition of the form.
+     */
     public function definition() {
         global $DB;
         $mform = $this->_form;
@@ -106,6 +116,13 @@ class create_form extends \moodleform {
         $this->add_action_buttons(true, get_string('create'));
     }
 
+    /**
+     * Course creation form validation logic.
+     *
+     * @param array $data The form data to validate.
+     * @param array $files Any uploaded files. Unused.
+     * @return array Any detected errors.
+     */
     public function validation($data, $files) {
         global $DB;
         $errors = array();

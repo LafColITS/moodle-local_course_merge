@@ -28,6 +28,13 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot.'/enrol/meta/locallib.php');
 
+/**
+ * Primary functionality the course merge plugin.
+ *
+ * @package   local_course_merge
+ * @copyright 2017 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class merge_course {
     /**
      * Creates the merged course and fires off ancillary tasks.
@@ -123,7 +130,7 @@ class merge_course {
      * Move the source courses to the designated category.
      *
      * @param array $coursestolink the ids of the source courses.
-     * @param int the id of the category.
+     * @param int $newchildcategory the id of the category.
      */
     public static function move_courses($coursestolink, $newchildcategory) {
         move_courses($coursestolink, $newchildcategory);

@@ -26,23 +26,59 @@ namespace local_course_merge;
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Helper functions for extracting parts of a course name using regular expressions.
+ *
+ * @package   local_course_merge
+ * @copyright 2016 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class extract_names {
 
+    /**
+     * Create the default course fullname for the new course.
+     *
+     * @param object $course The source course
+     * @return string The new course fullname
+     */
     public static function get_default_fullname($course) {
         $fullname = get_config('local_course_merge', 'mergedcoursenameformat');
         return self::replace_tokens($fullname, $course);
     }
 
+    /**
+     * Create the default course idnumber for the new course.
+     *
+     * @param object $course The source course
+     * @return string The new course idnumber
+     */
     public static function get_default_idnumber($course) {
         $idnumber = get_config('local_course_merge', 'mergedcourseidnumberformat');
         return self::replace_tokens($idnumber, $course);
     }
 
+    /**
+     * Create the default course shortname for the new course.
+     *
+     * @param object $course The source course
+     * @return string The new course shortname
+     */
     public static function get_default_shortname($course) {
         $shortname = get_config('local_course_merge', 'mergedcourseshortnameformat');
         return self::replace_tokens($shortname, $course);
     }
 
+    /**
+     * Process the [SECTIONS] token.
+     *
+     * The number of sections isn't known when bootstrapping the creation form. Users
+     * may include a [SECTIONS] token in the fullname, shortname, or idnumber fields. This
+     * is replaced with a string containing all the section numbers.
+     *
+     * @param object $data The submitted form data
+     * @param array $courseids The course ids of the source and target courses
+     * @return object $data The submitted data with the [SECTION] token replaced
+     */
     public static function post_process($data, $courseids) {
         global $DB;
 
@@ -60,6 +96,16 @@ class extract_names {
         return $data;
     }
 
+    /**
+     * Replaces tokens from default formats with values from source course.
+     *
+     * Takes the default values for fullname, shortname, or idnumber, then
+     * invokes replace_token to extract those values from the source course.
+     *
+     * @param string $pattern String with tokens for replacement.
+     * @param object $course The source course.
+     * @return string The calculated value
+     */
     private static function replace_tokens($pattern, $course) {
         preg_match_all('(\[[A-Z]+\])', $pattern, $matches);
         foreach ($matches[0] as $match) {
@@ -68,6 +114,17 @@ class extract_names {
         return $pattern;
     }
 
+    /**
+     * Use regular expressions to extract part of a course name.
+     *
+     * Invoked by replace_tokens. Depending on the token, determines the correct
+     * regular expression to use and extracts a value from either the fullname or
+     * idnumber of the course. Returns the first match only.
+     *
+     * @param string $key The given token to find and replace.
+     * @param object $course The source course.
+     * @return string The found value for the token in the course, or empty
+     */
     private static function replace_token($key, $course) {
         switch($key) {
             case '[DEPT]':

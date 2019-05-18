@@ -28,7 +28,23 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/local/course_merge/locallib.php');
 
+/**
+ * Various helper functions for the course merge plugin.
+ *
+ * @package   local_course_merge
+ * @copyright 2016 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class helper {
+    /**
+     * Determine whether the new course would violate uniquness constraints.
+     *
+     * Determine whether the new course would have a non-unique shortname or idnumber
+     * and throw an exception.
+     *
+     * @param object $course The course to be created
+     * @param object $url Moodle URL object for the current (source) course
+     */
     public static function course_exists($course, $url) {
         global $DB;
 
@@ -41,16 +57,32 @@ class helper {
         }
     }
 
+    /**
+     * Determine whether course meta links are enabled.
+     *
+     * @return bool Whether the plugin is enabled
+     */
     public static function meta_link_enabled() {
         $enrolplugins = \core_plugin_manager::instance()->get_enabled_plugins('enrol');
         return array_key_exists('meta', $enrolplugins);
     }
 
+    /**
+     * Get the immediate parent category of the given category.
+     *
+     * @param int $category The category
+     * @return object The parent of the given category
+     */
     public static function get_parent_coursecat($category) {
         $parents = \core_course_category::get($category, MUST_EXIST, true)->get_parents();
         return \core_course_category::get(end($parents), MUST_EXIST, true);
     }
 
+    /**
+     * Get list of categories for recategorizing child courses.
+     *
+     * @return array The categories for the form selector
+     */
     public static function get_category_selector() {
         $categories = \core_course_category::make_categories_list();
         $default = array(COURSE_MERGE_DEFAULT_CATEGORY  => get_string('defaultcategorytop', 'local_course_merge'));

@@ -24,6 +24,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Extends course navigation for the merge tool.
+ *
+ * @param navigation_node $navigation The navigation node to extend
+ * @param stdClass        $course The course object
+ * @param context         $context The course context
+ */
 function local_course_merge_extend_navigation_course($navigation, $course, $context) {
     $respectpermissions = get_config('local_course_merge', 'respectpermissions');
     if ($course->category == 0) {
