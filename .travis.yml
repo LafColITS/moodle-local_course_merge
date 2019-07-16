@@ -11,6 +11,9 @@ php:
  - 7.0
  - 7.1
 
+services:
+ - mysql
+
 addons:
   postgresql: "9.3"
   firefox: "47.0.1"
