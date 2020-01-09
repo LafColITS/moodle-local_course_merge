@@ -16,7 +16,7 @@ services:
  - mysql
 
 addons:
-  postgresql: "9.4"
+  postgresql: "9.5"
   firefox: "47.0.1"
   apt:
     packages:
@@ -26,9 +26,11 @@ env:
  matrix:
   - DB=pgsql MOODLE_BRANCH=MOODLE_36_STABLE
   - DB=pgsql MOODLE_BRANCH=MOODLE_37_STABLE
+  - DB=pgsql MOODLE_BRANCH=MOODLE_38_STABLE
   - DB=pgsql MOODLE_BRANCH=master
   - DB=mysqli MOODLE_BRANCH=MOODLE_36_STABLE
   - DB=mysqli MOODLE_BRANCH=MOODLE_37_STABLE
+  - DB=mysqli MOODLE_BRANCH=MOODLE_38_STABLE
   - DB=mysqli MOODLE_BRANCH=master
 
 matrix:
@@ -38,8 +40,16 @@ matrix:
     - php: 7.0
       env: DB=mysqli MOODLE_BRANCH=MOODLE_37_STABLE
     - php: 7.0
+      env: DB=pgsql MOODLE_BRANCH=MOODLE_38_STABLE
+    - php: 7.0
+      env: DB=mysqli MOODLE_BRANCH=MOODLE_38_STABLE
+    - php: 7.0
       env: DB=pgsql MOODLE_BRANCH=master
     - php: 7.0
+      env: DB=mysqli MOODLE_BRANCH=master
+    - php: 7.1
+      env: DB=pgsql MOODLE_BRANCH=master
+    - php: 7.1
       env: DB=mysqli MOODLE_BRANCH=master
 
 before_install:
