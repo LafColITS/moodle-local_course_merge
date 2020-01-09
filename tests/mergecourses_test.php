@@ -50,13 +50,19 @@ class local_course_merge_mergecourses_testcase extends advanced_testcase {
         $category1 = $this->getDataGenerator()->create_category();
         $category2 = $this->getDataGenerator()->create_category(array('parent' => $category1->id));
         $course1 = $this->getDataGenerator()->create_course(array('category' => $category2->id,
-            'startdate' => $coursestartdate, 'enddate' => $courseenddate));
+            'startdate' => $coursestartdate, 'enddate' => $courseenddate, 'numsections' => 16));
         $course2 = $this->getDataGenerator()->create_course(array('category' => $category2->id,
-            'startdate' => $coursestartdate, 'enddate' => $courseenddate));
+            'startdate' => $coursestartdate, 'enddate' => $courseenddate, 'numsections' => 14));
 
         // Sanity check.
         $courses = $DB->count_records('course', array('category' => $category2->id));
         $this->assertEquals(2, $courses);
+
+        // Section checks.
+        $sectionscreated1 = array_keys(get_fast_modinfo($course1)->get_section_info_all());
+        $this->assertEquals(range(0, 16), $sectionscreated1);
+        $sectionscreated2 = array_keys(get_fast_modinfo($course2)->get_section_info_all());
+        $this->assertEquals(range(0, 14), $sectionscreated2);
 
         // Create a merged course.
         $data = new stdClass();
@@ -70,5 +76,9 @@ class local_course_merge_mergecourses_testcase extends advanced_testcase {
         $course3 = \local_course_merge\merge_course::create_course($data, $coursestolink);
         $courses = $DB->count_records('course', array('category' => $category2->id));
         $this->assertEquals(3, $courses);
+
+        // Count the sections in the merged course.
+        $sectionscreated3 = array_keys(get_fast_modinfo($course3)->get_section_info_all());
+        $this->assertEquals(range(0, 4), $sectionscreated3);
     }
 }
