@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 3.6.2 (January 9, 2020)
 
 - Ensure course default settings are used.
 
