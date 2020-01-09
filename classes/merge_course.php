@@ -45,9 +45,13 @@ class merge_course {
      * @return stdClass The new course.
      */
     public static function create_course($data, $coursestolink) {
+        // Get core course config.
+        $courseconfig = get_config('moodlecourse');
 
         // New course object.
         $tocreate = new \stdClass();
+
+        // Settings based on source course,.
         $tocreate->category  = $data->category;
         $tocreate->startdate = $data->startdate;
         $tocreate->enddate   = 0;
@@ -55,6 +59,19 @@ class merge_course {
         $tocreate->shortname = $data->shortname;
         $tocreate->idnumber  = $data->idnumber;
         $tocreate->visible   = 0;
+
+        // Settings based on default config.
+        $tocreate->format            = $courseconfig->format;
+        $tocreate->newsitems         = $courseconfig->newsitems;
+        $tocreate->showgrades        = $courseconfig->showgrades;
+        $tocreate->showreports       = $courseconfig->showreports;
+        $tocreate->maxbytes          = $courseconfig->maxbytes;
+        $tocreate->groupmode         = $courseconfig->groupmode;
+        $tocreate->groupmodeforce    = $courseconfig->groupmodeforce;
+        $tocreate->visible           = $courseconfig->visible;
+        $tocreate->lang              = $courseconfig->lang;
+        $tocreate->enablecompletion  = $courseconfig->enablecompletion;
+        $tocreate->numsections       = $courseconfig->numsections;
 
         // Some courses have end dates.
         if (isset($data->enddate)) {

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Ensure course default settings are used.
+
 ## 3.6.1 (May 19, 2019)
 
 - Set most fields to advanced by default
