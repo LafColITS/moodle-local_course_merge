@@ -57,7 +57,7 @@ The plugin is designed to provide a controlled course-creation capability which 
 
 ### Templates
 
-The plugin allows the site administrator to define naming conventions for created courses. These are defined using a series of regular expressions. See the settings page itself for examples.
+The plugin allows the site administrator to define naming conventions for created courses. These are defined using a series of regular expressions. See the [plugin wiki](https://github.com/LafColITS/moodle-local_course_merge/wiki) for examples.
 
 Acknowledgements
 ----------------
