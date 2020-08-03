@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Change default branch to "main"
 - Update CI tool to version 3
 
 ## 3.6.2 (January 9, 2020)
