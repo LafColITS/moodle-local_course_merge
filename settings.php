@@ -60,6 +60,17 @@ if ($hassiteconfig) {
         new lang_string('usenametemplates', 'local_course_merge'),
         new lang_string('usenametemplates_desc', 'local_course_merge'), 0));
 
+    $defaultadvancedsettings = "shortname
+idnumber
+hidecourses
+newchildcategory";
+
+    $settings->add(new admin_setting_configtextarea('local_course_merge/advancedsettings',
+        new lang_string('advancedsettings', 'local_course_merge'),
+        new lang_string('advancedsettings_desc', 'local_course_merge'),
+        $defaultadvancedsettings
+    ));
+
     $settings->add(new admin_setting_heading('extractname', new lang_string('extractname', 'local_course_merge'),
         new lang_string('extractnameinfo', 'local_course_merge')));
 

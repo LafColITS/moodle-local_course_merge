@@ -67,17 +67,14 @@ class create_form extends \moodleform {
         $mform->addElement('text', 'shortname', get_string('shortnamecourse'), 'maxlength="100" size="20"');
         $mform->setType('shortname', PARAM_TEXT);
         $mform->addRule('shortname', null, 'required', null, 'client');
-        $mform->setAdvanced('shortname');
 
         // ID number.
         $mform->addElement('text', 'idnumber', get_string('idnumbercourse'), 'maxlength="100" size="20"');
         $mform->setType('idnumber', PARAM_RAW);
-        $mform->setAdvanced('idnumber');
 
         // Hide child courses.
         $mform->addElement('checkbox', 'hidecourses', get_string('hidecourses', 'local_course_merge'));
         $mform->setDefault('hidecourses', 1);
-        $mform->setAdvanced('hidecourses');
 
         // Move child courses to a category.
         if (has_capability('local/course_merge:categorize_course', $categorycontext)) {
@@ -88,7 +85,6 @@ class create_form extends \moodleform {
             $mform->addElement('hidden', 'newchildcategory', COURSE_MERGE_DEFAULT_CATEGORY);
         }
         $mform->setType('newchildcategory', PARAM_INT);
-        $mform->setAdvanced('newchildcategory');
 
         // Set templated defaults.
         if (get_config('local_course_merge', 'usenametemplates')) {
@@ -101,6 +97,12 @@ class create_form extends \moodleform {
                 $mform->hardFreeze('shortname');
                 $mform->hardFreeze('idnumber');
             }
+        }
+
+        // Set advanced.
+        $advanced = local_course_merge_get_advanced_settings();
+        foreach ($advanced as $id) {
+            $mform->setAdvanced($id);
         }
 
         // Metadata.

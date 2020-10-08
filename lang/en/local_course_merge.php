@@ -24,6 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
+$string['advancedsettings'] = 'Which settings are advanced?';
+$string['advancedsettings_desc'] = 'Newline-separated list of form fields to mark as advanced in the course merge form.';
 $string['childcategorypermissions'] = 'You do not have permission to move courses into that category';
 $string['course_merge:categorize_course'] = 'Recategorize source courses';
 $string['course_merge:create_course'] = 'Create merged course shell';
