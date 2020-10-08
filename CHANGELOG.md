@@ -1,9 +1,10 @@
 # Changelog
 
-## Unreleased
+## 3.6.3 (October 8, 2020)
 
 - Change default branch to "main"
 - Update CI tool to version 3
+- Allow site administrators to configure which form fields are advanced
 
 ## 3.6.2 (January 9, 2020)
 

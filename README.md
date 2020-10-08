@@ -59,6 +59,10 @@ The plugin is designed to provide a controlled course-creation capability which 
 
 The plugin allows the site administrator to define naming conventions for created courses. These are defined using a series of regular expressions. See the [plugin wiki](https://github.com/LafColITS/moodle-local_course_merge/wiki) for examples.
 
+### Marking form fields as advanced
+
+By default, many of the form fields in the "Create a merged course shell" form are marked as advanced, meaning they are hidden at first and a user must click "Show more" to see them. You can remove fields from the advanced block by removing their identifiers from the "Which settings are advanced?" text area on the settings page.
+
 Acknowledgements
 ----------------
 This plugin relies heavily on the AJAX course selector and related course meta link interface code developed by Damyon Wiese for the Moodle 3.1 release.
