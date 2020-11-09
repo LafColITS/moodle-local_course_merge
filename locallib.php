@@ -29,6 +29,11 @@ define('COURSE_MERGE_DEPTH_SAME_CATEGORY', 1);
 define('COURSE_MERGE_DEPTH_SAME_PARENT', 2);
 define('COURSE_MERGE_DEFAULT_CATEGORY', -1);
 
+/**
+ * Get the advanced fields for the course merge tool.
+ *
+ * @return array
+ */
 function local_course_merge_get_advanced_settings() {
     $raw = get_config('local_course_merge', 'advancedsettings');
     $exploded = explode("\n", $raw);
