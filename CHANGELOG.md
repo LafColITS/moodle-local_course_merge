@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Migrate CI builds to Github Actions
+
 ## 3.7.0 (November 9, 2020)
 
 - Change default branch to "main"

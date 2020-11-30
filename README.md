@@ -2,7 +2,7 @@
 Moodle Course Merge Helper
 ==========================
 
-[![Build Status](https://travis-ci.com/LafColITS/moodle-local_course_merge.svg?branch=main)](https://travis-ci.com/LafColITS/moodle-local_course_merge)
+![Moodle Plugin CI](https://github.com/LafColITS/moodle-local_course_merge/workflows/Moodle%20Plugin%20CI/badge.svg)
 
 This local module allows teachers to create a new course from existing courses using the [Course Meta Link](https://docs.moodle.org/31/en/Course_meta_link) enrollment method. The intended use case is a teacher combining multiple sections of a course into a single course while preserving the enrollments of the original courses.
 
