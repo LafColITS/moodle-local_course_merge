@@ -77,6 +77,11 @@ if ($mform->is_cancelled()) {
         local_course_merge\merge_course::hide_courses($coursestolink);
     }
 
+    // Hide child courses from teachers.
+    if (isset($data->hidecoursesteachers) && ($data->hidecoursesteachers != '') && $data->hidecoursesteachers > 0) {
+        local_course_merge\merge_course::hide_courses_from_teachers($coursestolink);
+    }
+
     // If set, move child courses.
     if (!empty($data->newchildcategory) && $data->newchildcategory != COURSE_MERGE_DEFAULT_CATEGORY) {
         local_course_merge\merge_course::move_courses($coursestolink, $data->newchildcategory);

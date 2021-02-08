@@ -66,7 +66,11 @@ class merge_course {
         $tocreate->showgrades        = $courseconfig->showgrades;
         $tocreate->showreports       = $courseconfig->showreports;
         $tocreate->maxbytes          = $courseconfig->maxbytes;
-        $tocreate->groupmode         = $courseconfig->groupmode;
+        if (!isset($data->groupmode) || ($data->groupmode == '')) {
+            $tocreate->groupmode     = (int)$courseconfig->groupmode;
+        } else {
+            $tocreate->groupmode = $data->groupmode;
+        }
         $tocreate->groupmodeforce    = $courseconfig->groupmodeforce;
         $tocreate->visible           = $courseconfig->visible;
         $tocreate->lang              = $courseconfig->lang;
@@ -122,6 +126,24 @@ class merge_course {
             $oldcourse = course_get_format($oldcourseid)->get_course();
             $oldcourse->visible = 0;
             update_course($oldcourse);
+        }
+    }
+
+    /**
+     * Hide the source courses from teachers.
+     *
+     * This removes the capability to view hidden courses from editingteacher and teacher roles.
+     *
+     * @param array $coursestolink the source courses.
+     */
+    public static function hide_courses_from_teachers($coursestolink) {
+        global $DB;
+        $editingteacherid = $DB->get_field('role', 'id', ['shortname' => 'editingteacher']);
+        $teacherid = $DB->get_field('role', 'id', ['shortname' => 'teacher']);
+        foreach ($coursestolink as $oldcourseid) {
+            $context = \context_course::instance($oldcourseid);
+            assign_capability('moodle/course:viewhiddencourses', CAP_PREVENT, $editingteacherid, $context->id, true);
+            assign_capability('moodle/course:viewhiddencourses', CAP_PREVENT, $teacherid, $context->id, true);
         }
     }
 
