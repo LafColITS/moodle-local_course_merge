@@ -61,13 +61,13 @@ $string['generalsettingsinfo'] = '';
 $string['groupmode'] = 'Group mode';
 $string['groupmode_help'] = 'This setting has 4 options:
 
-* Do not force - will use the default course configuration global setting.
+* Use default - will use the default course configuration global setting.
 * No groups
 * Separate groups - Each group member can only see their own group, others are invisible
 * Visible groups - Each group member works in their own group, but can also see other groups
 
 The group mode defined at course level is the default mode for all activities within the course. Each activity that supports groups can also define its own group mode, though if the group mode is forced at course level, the group mode setting for each activity is ignored.';
-$string['groupsdont'] = 'Do not force';
+$string['groupsdont'] = 'Use default';
 $string['groupsnone'] = 'No groups';
 $string['groupsonly'] = 'Groups only';
 $string['groupsseparate'] = 'Separate groups';
