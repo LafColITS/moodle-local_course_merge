@@ -71,7 +71,7 @@ class merge_course {
         } else {
             $tocreate->groupmode = $data->groupmode;
         }
-        $tocreate->groupmodeforce    = $courseconfig->groupmodeforce;
+        $tocreate->groupmodeforce    = $data->groupmodeforce;
         $tocreate->visible           = $courseconfig->visible;
         $tocreate->lang              = $courseconfig->lang;
         $tocreate->enablecompletion  = $courseconfig->enablecompletion;

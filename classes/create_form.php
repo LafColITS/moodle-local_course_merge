@@ -80,7 +80,7 @@ class create_form extends \moodleform {
         $mform->addElement('checkbox', 'hidecoursesteachers', get_string('hidecoursesfromteachers', 'local_course_merge'));
         $mform->setDefault('hidecoursesteachers', 0);
 
-        // Force group mode.
+        // Group mode.
         $choices = array();
         $choices[''] = get_string('groupsdont', 'local_course_merge');
         $choices[NOGROUPS] = get_string('groupsnone', 'local_course_merge');
@@ -89,6 +89,11 @@ class create_form extends \moodleform {
         $mform->addElement('select', 'groupmode', get_string('groupmode', 'local_course_merge'), $choices);
         $mform->addHelpButton('groupmode', 'groupmode', 'local_course_merge');
         $mform->setDefault('groupmode', get_config('moodlecourse', 'groupmode'));
+
+        // Force Group mode.
+        $mform->addElement('selectyesno', 'groupmodeforce', get_string('groupmodeforce', 'group'));
+        $mform->addHelpButton('groupmodeforce', 'groupmodeforce', 'group');
+        $mform->setDefault('groupmodeforce', get_config('moodlecourse', 'groupmodeforce'));
 
         // Move child courses to a category.
         if (has_capability('local/course_merge:categorize_course', $categorycontext)) {
