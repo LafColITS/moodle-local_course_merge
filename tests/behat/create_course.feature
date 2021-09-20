@@ -113,7 +113,7 @@ Feature: The course merge helper allows a teacher to create a new course
     And I should see "Sadie Student"
     And I should see "Shawn Student"
     And I am on "Test merged course" course homepage
-    And I navigate to "Edit settings" in current page administration
+    And I navigate to "Settings" in current page administration
     And I set the following fields to these values:
       | Course visibility | Show |
     And I press "Save and display"
@@ -177,7 +177,7 @@ Feature: The course merge helper allows a teacher to create a new course
       | Course ID number  | C4                 |
     And I press "Create"
     And I should see "Test merged course"
-    And I navigate to "Edit settings" in current page administration
+    And I navigate to "Settings" in current page administration
     And the following fields match these values:
       | id_enddate_day       | 1       |
       | id_enddate_month     | April   |

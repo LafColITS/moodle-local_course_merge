@@ -57,6 +57,6 @@ Feature: The course merge helper allows a manager to enforce a naming convention
     And I wait until the page is ready
     And I press "Create"
     And I should see "HIST 300-FA2016 (Terry Teacher)"
-    And I navigate to "Edit settings" in current page administration
+    And I navigate to "Settings" in current page administration
     And the following fields match these values:
       | Course ID number | HIST300.12.201610 |
