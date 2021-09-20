@@ -158,7 +158,7 @@ Feature: The course merge helper allows a teacher to create a new course
     And I press "Create"
     And I should see "Test merged course"
     And I go to the courses management page
-    And I follow "Miscellaneous"
+    And I follow "Category 1"
     And I should not see "Course 1"
     And I should not see "Course 3"
     And I follow "Hidden stuff"
