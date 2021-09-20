@@ -4,6 +4,7 @@
 
 - Migrate CI builds to Github Actions
 - Drop support for Moodle 3.7-3.8
+- Cap testing matrix at Moodle 3.11
 
 ## 3.7.0 (November 9, 2020)
 
