@@ -107,7 +107,7 @@ Feature: The course merge helper allows a teacher to create a new course
     And I should see "Course meta link (Course 1)"
     And I should see "Course meta link (Course 3)"
     And I am on "Test merged course" course homepage
-    And I am on the "Test merged course" "Users" page
+    And I follow "Participants"
     And I should see "Sally Student"
     And I should see "Steve Student"
     And I should see "Sadie Student"
