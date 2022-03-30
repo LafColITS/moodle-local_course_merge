@@ -118,7 +118,7 @@ Feature: The course merge helper allows a teacher to create a new course
       | Course visibility | Show |
     And I press "Save and display"
     And I log out
-    And I log in as "student3"
+    And I am on the "My courses" page logged in as "student3"
     And I click on "Past" "button" in the "Course overview" "block"
     When I click on "In progress" "link" in the "Course overview" "block"
     Then I should see "Test merged course"
