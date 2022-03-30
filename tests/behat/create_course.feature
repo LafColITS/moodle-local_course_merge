@@ -103,11 +103,11 @@ Feature: The course merge helper allows a teacher to create a new course
       | Course ID number  | C4                 |
     And I press "Create"
     And I should see "Test merged course"
-    And I navigate to "Users > Enrolment methods" in current page administration
+    And I am on the "Test merged course" "Enrolment methods" page
     And I should see "Course meta link (Course 1)"
     And I should see "Course meta link (Course 3)"
     And I am on "Test merged course" course homepage
-    And I navigate to "Users > Enrolled users" in current page administration
+    And I am on the "Test merged course" "Users" page
     And I should see "Sally Student"
     And I should see "Steve Student"
     And I should see "Sadie Student"
@@ -137,7 +137,7 @@ Feature: The course merge helper allows a teacher to create a new course
       | Course ID number  | C4                 |
     And I press "Create"
     And I should see "Test merged course"
-    And I navigate to "Users > Groups" in current page administration
+    And I am on the "Test merged course" "Groups" page
     And I should see "Course 1 course (4)"
     And I should see "Course 3 course (3)"
 
