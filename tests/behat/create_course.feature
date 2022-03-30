@@ -7,11 +7,11 @@ Feature: The course merge helper allows a teacher to create a new course
   Background:
     Given the following "categories" exist:
       | name         | category | idnumber | visible |
-      | Category 1   | 0        | CAT1     | 0 |
-      | Category 2   | CAT1     | CAT2     | 0 |
-      | Category 3   | CAT1     | CAT3     | 0 |
-      | Category 4   | 0        | CAT4     | 0 |
-      | Category 5   | CAT4     | CAT5     | 0 |
+      | Test Category 1   | 0        | CAT1     | 0 |
+      | Test Category 2   | CAT1     | CAT2     | 0 |
+      | Test Category 3   | CAT1     | CAT3     | 0 |
+      | Test Category 4   | 0        | CAT4     | 0 |
+      | Test Category 5   | CAT4     | CAT5     | 0 |
       | Hidden stuff | 0        |          | 1 |
     And the following "courses" exist:
       | fullname | shortname | category | visible | startdate | enddate |
@@ -87,7 +87,7 @@ Feature: The course merge helper allows a teacher to create a new course
 
   @javascript
   Scenario: Create a new course and hide old courses
-    When I log in as "student3"
+    Given I am on the "My courses" page logged in as "student3"
     And I should see "Course 2"
     And I click on "All" "button" in the "Course overview" "block"
     When I click on "Past" "link" in the "Course overview" "block"
@@ -158,7 +158,7 @@ Feature: The course merge helper allows a teacher to create a new course
     And I press "Create"
     And I should see "Test merged course"
     And I go to the courses management page
-    And I follow "Category 1"
+    And I follow "Test Category 1"
     And I should not see "Course 1"
     And I should not see "Course 3"
     And I follow "Hidden stuff"
