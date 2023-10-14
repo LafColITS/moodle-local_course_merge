@@ -58,7 +58,22 @@ $string['extractnametitle'] = 'Course title';
 $string['extractnametitle_desc'] = 'The full title of the course. Used to populate [TITLE].';
 $string['generalsettings'] = 'General settings';
 $string['generalsettingsinfo'] = '';
+$string['groupmode'] = 'Group mode';
+$string['groupmode_help'] = 'This setting has 4 options:
+
+* Use default - will use the default course configuration global setting.
+* No groups
+* Separate groups - Each group member can only see their own group, others are invisible
+* Visible groups - Each group member works in their own group, but can also see other groups
+
+The group mode defined at course level is the default mode for all activities within the course. Each activity that supports groups can also define its own group mode, though if the group mode is forced at course level, the group mode setting for each activity is ignored.';
+$string['groupsdont'] = 'Use default';
+$string['groupsnone'] = 'No groups';
+$string['groupsonly'] = 'Groups only';
+$string['groupsseparate'] = 'Separate groups';
+$string['groupsvisible'] = 'Visible groups';
 $string['hidecourses'] = 'Hide original courses from students';
+$string['hidecoursesfromteachers'] = 'Hide original courses from teachers';
 $string['idnumberexists'] = 'Could not create merged course shell: a course with the idnumber {$a} already exists.';
 $string['maxcategorydepth'] = 'Maximum category depth';
 $string['maxcategorydepth_desc'] = 'Restrict the courses which can be merged together by category depth.';
