@@ -4,7 +4,7 @@ Moodle Course Merge Helper
 
 ![Moodle Plugin CI](https://github.com/LafColITS/moodle-local_course_merge/workflows/Moodle%20Plugin%20CI/badge.svg)
 
-This local module allows teachers to create a new course from existing courses using the [Course Meta Link](https://docs.moodle.org/31/en/Course_meta_link) enrollment method. The intended use case is a teacher combining multiple sections of a course into a single course while preserving the enrollments of the original courses.
+This local module allows teachers to create a new course from existing courses using the [Course meta link](https://docs.moodle.org/403/en/Course_meta_link) enrollment method. The intended use case is a teacher combining multiple sections of a course into a single course while preserving the enrollments of the original courses.
 
 Requirements
 ------------
@@ -13,6 +13,8 @@ Requirements
 Installation
 ------------
 Copy the course_merge folder into your /local directory and visit your Admin Notification page to complete the installation.
+
+The [Course meta link](https://docs.moodle.org/403/en/Course_meta_link) enrollment method must be enabled and in that plugin teacher and student roles must be synchronized.
 
 Usage
 -----
