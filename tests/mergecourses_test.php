@@ -35,7 +35,7 @@ require_once($CFG->dirroot.'/local/course_merge/locallib.php');
  * @copyright  2017 Lafayette College ITS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class local_course_merge_mergecourses_testcase extends advanced_testcase {
+class local_course_merge_mergecourses_test extends advanced_testcase {
     public function test_course_merge() {
         global $DB;
         $this->setAdminUser();
