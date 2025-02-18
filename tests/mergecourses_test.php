@@ -23,6 +23,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace local_course_merge;
+
+use stdClass;
+use advanced_testcase;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
@@ -35,7 +40,7 @@ require_once($CFG->dirroot.'/local/course_merge/locallib.php');
  * @copyright  2017 Lafayette College ITS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class local_course_merge_mergecourses_test extends advanced_testcase {
+class mergecourses_test extends advanced_testcase {
     public function test_course_merge() {
         global $DB;
         $this->setAdminUser();
@@ -73,7 +78,7 @@ class local_course_merge_mergecourses_test extends advanced_testcase {
         $data->shortname = 'Shorter name';
         $data->idnumber  = '';
         $coursestolink   = array($course1->id, $course2->id);
-        $course3 = \local_course_merge\merge_course::create_course($data, $coursestolink);
+        $course3 = merge_course::create_course($data, $coursestolink);
         $courses = $DB->count_records('course', array('category' => $category2->id));
         $this->assertEquals(3, $courses);
 

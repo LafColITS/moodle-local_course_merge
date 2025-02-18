@@ -38,11 +38,11 @@ if ($hassiteconfig) {
         get_string('maxcategorydepth', 'local_course_merge'),
         get_string('maxcategorydepth_desc', 'local_course_merge'),
         COURSE_MERGE_DEPTH_SAME_PARENT,
-        array(
+        [
             COURSE_MERGE_DEPTH_UNLIMITED => get_string('coursemergeunlimited', 'local_course_merge'),
             COURSE_MERGE_DEPTH_SAME_CATEGORY => get_string('coursemergesamecategory', 'local_course_merge'),
             COURSE_MERGE_DEPTH_SAME_PARENT => get_string('coursemergesameparent', 'local_course_merge'),
-        )
+        ]
     ));
 
     $categories = local_course_merge\helper::get_category_selector();

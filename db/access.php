@@ -32,7 +32,7 @@ $capabilities = array(
             'student'        => CAP_PROHIBIT,
             'teacher'        => CAP_PREVENT,
             'editingteacher' => CAP_ALLOW,
-            'manager'        => CAP_ALLOW
+            'manager'        => CAP_ALLOW,
         ),
     ),
 
@@ -43,8 +43,8 @@ $capabilities = array(
             'student'        => CAP_PROHIBIT,
             'teacher'        => CAP_PREVENT,
             'editingteacher' => CAP_PREVENT,
-            'manager'        => CAP_ALLOW
-        )
+            'manager'        => CAP_ALLOW,
+        ),
     ),
 
     'local/course_merge:categorize_course' => array(
@@ -54,7 +54,7 @@ $capabilities = array(
             'student'        => CAP_PROHIBIT,
             'teacher'        => CAP_PREVENT,
             'editingteacher' => CAP_PREVENT,
-            'manager'        => CAP_ALLOW
+            'manager'        => CAP_ALLOW,
         ),
-    )
+    ),
 );

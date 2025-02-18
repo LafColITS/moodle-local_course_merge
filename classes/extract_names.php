@@ -24,8 +24,6 @@
 
 namespace local_course_merge;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Helper functions for extracting parts of a course name using regular expressions.
  *
