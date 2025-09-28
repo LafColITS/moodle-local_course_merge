@@ -6,6 +6,7 @@
 - Drop support for Moodle 3.7-4.0
 - Update tests for string changes in [MDL-72093](https://tracker.moodle.org/browse/MDL-72093) and [MDL-72115](https://tracker.moodle.org/browse/MDL-72115)
 - Update tests for navigation changes in Moodle 4.0+
+- [FEATURE] Allow setting a default groupmode for new courses
 
 ## 3.7.0 (November 9, 2020)
 

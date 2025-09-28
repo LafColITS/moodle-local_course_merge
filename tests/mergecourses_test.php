@@ -77,6 +77,7 @@ class mergecourses_test extends advanced_testcase {
         $data->fullname  = $course1->fullname;
         $data->shortname = 'Shorter name';
         $data->idnumber  = '';
+        $data->groupmode = helper::get_default_groupmode();
         $coursestolink   = array($course1->id, $course2->id);
         $course3 = merge_course::create_course($data, $coursestolink);
         $courses = $DB->count_records('course', array('category' => $category2->id));
@@ -85,5 +86,9 @@ class mergecourses_test extends advanced_testcase {
         // Count the sections in the merged course.
         $sectionscreated3 = array_keys(get_fast_modinfo($course3)->get_section_info_all());
         $this->assertEquals(range(0, 4), $sectionscreated3);
+
+        // Group mode matches default.
+        $courseconfig = get_config('moodlecourse');
+        $this->assertEquals($courseconfig->groupmode, $course3->groupmode);
     }
 }

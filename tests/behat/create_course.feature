@@ -183,3 +183,20 @@ Feature: The course merge helper allows a teacher to create a new course
       | id_enddate_month     | April   |
       | id_enddate_year      | 2018    |
       | id_enddate_enabled   | 1       |
+
+  @javascript
+  Scenario: Create a new course with a non-default group setting
+    Given I log in as "teacher1"
+    And I am on "Course 3" course homepage
+    And I navigate to "Create merged course shell" in current page administration
+    And I set the following fields to these values:
+      | Courses to merge  | Course 1 |
+      | Course full name  | Test merged course |
+      | Course short name | Test course        |
+      | Course ID number  | C4                 |
+      | Group mode        | Separate groups    |
+    And I press "Create"
+    And I should see "Test merged course"
+    And I navigate to "Settings" in current page administration
+    And the following fields match these values:
+      | Group mode | Separate groups |

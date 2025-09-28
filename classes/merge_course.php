@@ -51,7 +51,7 @@ class merge_course {
         // New course object.
         $tocreate = new \stdClass();
 
-        // Settings based on source course,.
+        // Settings based on source course or form input.
         $tocreate->category  = $data->category;
         $tocreate->startdate = $data->startdate;
         $tocreate->enddate   = 0;
@@ -59,6 +59,7 @@ class merge_course {
         $tocreate->shortname = $data->shortname;
         $tocreate->idnumber  = $data->idnumber;
         $tocreate->visible   = 0;
+        $tocreate->groupmode = $data->groupmode;
 
         // Settings based on default config.
         $tocreate->format            = $courseconfig->format;
@@ -66,7 +67,6 @@ class merge_course {
         $tocreate->showgrades        = $courseconfig->showgrades;
         $tocreate->showreports       = $courseconfig->showreports;
         $tocreate->maxbytes          = $courseconfig->maxbytes;
-        $tocreate->groupmode         = $courseconfig->groupmode;
         $tocreate->groupmodeforce    = $courseconfig->groupmodeforce;
         $tocreate->visible           = $courseconfig->visible;
         $tocreate->lang              = $courseconfig->lang;

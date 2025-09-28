@@ -60,6 +60,14 @@ if ($hassiteconfig) {
         new lang_string('usenametemplates', 'local_course_merge'),
         new lang_string('usenametemplates_desc', 'local_course_merge'), 0));
 
+    $groupmodes = local_course_merge\helper::get_groupmode_selector();
+    $settings->add(new admin_setting_configselect('local_course_merge/defaultgroupmode',
+        new lang_string('defaultgroupmode', 'local_course_merge'),
+        new lang_string('defaultgroupmode_desc', 'local_course_merge'),
+        COURSE_MERGE_USE_DEFAULT_GROUPMODE,
+        $groupmodes
+    ));
+
     $defaultadvancedsettings = "shortname
 idnumber
 hidecourses

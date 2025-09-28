@@ -27,6 +27,7 @@ namespace local_course_merge;
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/local/course_merge/locallib.php');
+require_once($CFG->dirroot . '/lib/grouplib.php');
 
 /**
  * Various helper functions for the course merge plugin.
@@ -87,5 +88,34 @@ class helper {
         $categories = \core_course_category::make_categories_list();
         $default = array(COURSE_MERGE_DEFAULT_CATEGORY  => get_string('defaultcategorytop', 'local_course_merge'));
         return $default + $categories;
+    }
+
+    /**
+     * Get the actual default group mode (0-2).
+     *
+     * @return int
+     */
+    public static function get_default_groupmode() {
+        $defaultgroupmode = get_config('local_course_merge', 'defaultgroupmode');
+        if ($defaultgroupmode == COURSE_MERGE_USE_DEFAULT_GROUPMODE) {
+            $courseconfig = get_config('moodlecourse');
+            return $courseconfig->groupmode;
+        }
+        return $defaultgroupmode;
+    }
+
+    /**
+     * Get list of groupmodes for form selectors.
+     *
+     * @return array The groupmode for the form selector
+     */
+    public static function get_groupmode_selector() {
+        $groupmodes = [
+            COURSE_MERGE_USE_DEFAULT_GROUPMODE => get_string('usedefaultgroupmode', 'local_course_merge'),
+            NOGROUPS => get_string('groupsnone', 'group'),
+            SEPARATEGROUPS => get_string('groupsseparate', 'group'),
+            VISIBLEGROUPS => get_string('groupsvisible', 'group'),
+        ];
+        return $groupmodes;
     }
 }
