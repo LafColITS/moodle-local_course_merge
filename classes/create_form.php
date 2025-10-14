@@ -36,7 +36,6 @@ require_once('locallib.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class create_form extends \moodleform {
-
     /**
      * Actual definition of the form.
      */
@@ -46,7 +45,7 @@ class create_form extends \moodleform {
 
         // Get category course data and category context.
         $course = $this->_customdata['id'];
-        $coursedata = $DB->get_record('course', array('id' => $course), '*', MUST_EXIST);
+        $coursedata = $DB->get_record('course', ['id' => $course], '*', MUST_EXIST);
         $categorycontext = \context_coursecat::instance($coursedata->category);
 
         // Fieldset wrapper.
@@ -54,7 +53,7 @@ class create_form extends \moodleform {
         $mform->setExpanded('wrapper');
 
         // Course chooser.
-        $options = array('requiredcapabilities' => array('moodle/course:update'), 'multiple' => true, 'exclude' => array($course));
+        $options = ['requiredcapabilities' => ['moodle/course:update'], 'multiple' => true, 'exclude' => [$course]];
         $mform->addElement('course', 'link', get_string('coursestomerge', 'local_course_merge'), $options);
         $mform->addRule('link', get_string('required'), 'required', null, 'client');
 
@@ -127,17 +126,17 @@ class create_form extends \moodleform {
      */
     public function validation($data, $files) {
         global $DB;
-        $errors = array();
+        $errors = [];
         $coursestolink = $data['link'];
         $newchildcategory = $data['newchildcategory'];
 
         $maxdepth = get_config('local_course_merge', 'maxcategorydepth');
         if ($maxdepth != COURSE_MERGE_DEPTH_UNLIMITED) {
-            $droppedcourses = array();
-            $validcategories = array($data['category']);
+            $droppedcourses = [];
+            $validcategories = [$data['category']];
             if ($maxdepth == COURSE_MERGE_DEPTH_SAME_PARENT) {
                 $parent = helper::get_parent_coursecat($data['category']);
-                $children = $DB->get_fieldset_select('course_categories', 'id', 'parent = ?', array($parent->__get('id')));
+                $children = $DB->get_fieldset_select('course_categories', 'id', 'parent = ?', [$parent->__get('id')]);
                 $validcategories = array_merge($validcategories, $children);
             }
             $courses = $DB->get_records_list('course', 'id', $coursestolink, null, 'id,fullname,category');

@@ -30,8 +30,11 @@ if ($hassiteconfig) {
     $settings = new admin_settingpage('local_course_merge', get_string('pluginname', 'local_course_merge'));
     $ADMIN->add('localplugins', $settings);
 
-    $settings->add(new admin_setting_heading('general', new lang_string('generalsettings', 'local_course_merge'),
-        new lang_string('generalsettingsinfo', 'local_course_merge')));
+    $settings->add(new admin_setting_heading(
+        'general',
+        new lang_string('generalsettings', 'local_course_merge'),
+        new lang_string('generalsettingsinfo', 'local_course_merge')
+    ));
 
     $settings->add(new admin_setting_configselect(
         'local_course_merge/maxcategorydepth',
@@ -46,67 +49,115 @@ if ($hassiteconfig) {
     ));
 
     $categories = local_course_merge\helper::get_category_selector();
-    $settings->add(new admin_setting_configselect('local_course_merge/defaultcategory',
+    $settings->add(new admin_setting_configselect(
+        'local_course_merge/defaultcategory',
         new lang_string('defaultcategory', 'local_course_merge'),
         new lang_string('defaultcategory_desc', 'local_course_merge'),
         COURSE_MERGE_DEFAULT_CATEGORY,
-        $categories)
-    );
+        $categories
+    ));
 
-    $settings->add(new admin_setting_configcheckbox('local_course_merge/respectpermissions',
-        get_string('respectpermissions', 'local_course_merge'), get_string('respectpermissions_desc', 'local_course_merge'), 1));
+    $settings->add(new admin_setting_configcheckbox(
+        'local_course_merge/respectpermissions',
+        get_string('respectpermissions', 'local_course_merge'),
+        get_string('respectpermissions_desc', 'local_course_merge'),
+        1
+    ));
 
-    $settings->add(new admin_setting_configcheckbox('local_course_merge/usenametemplates',
+    $settings->add(new admin_setting_configcheckbox(
+        'local_course_merge/usenametemplates',
         new lang_string('usenametemplates', 'local_course_merge'),
-        new lang_string('usenametemplates_desc', 'local_course_merge'), 0));
+        new lang_string('usenametemplates_desc', 'local_course_merge'),
+        0
+    ));
 
     $defaultadvancedsettings = "shortname
 idnumber
 hidecourses
 newchildcategory";
 
-    $settings->add(new admin_setting_configtextarea('local_course_merge/advancedsettings',
+    $settings->add(new admin_setting_configtextarea(
+        'local_course_merge/advancedsettings',
         new lang_string('advancedsettings', 'local_course_merge'),
         new lang_string('advancedsettings_desc', 'local_course_merge'),
         $defaultadvancedsettings
     ));
 
-    $settings->add(new admin_setting_heading('extractname', new lang_string('extractname', 'local_course_merge'),
-        new lang_string('extractnameinfo', 'local_course_merge')));
+    $settings->add(new admin_setting_heading(
+        'extractname',
+        new lang_string('extractname', 'local_course_merge'),
+        new lang_string('extractnameinfo', 'local_course_merge')
+    ));
 
-    $settings->add(new admin_setting_configtext('local_course_merge/extractnametitle',
+    $settings->add(new admin_setting_configtext(
+        'local_course_merge/extractnametitle',
         new lang_string('extractnametitle', 'local_course_merge'),
-        new lang_string('extractnametitle_desc', 'local_course_merge'), '', PARAM_NOTAGS));
+        new lang_string('extractnametitle_desc', 'local_course_merge'),
+        '',
+        PARAM_NOTAGS
+    ));
 
-    $settings->add(new admin_setting_configtext('local_course_merge/extractnamedept',
+    $settings->add(new admin_setting_configtext(
+        'local_course_merge/extractnamedept',
         new lang_string('extractnamedept', 'local_course_merge'),
-        new lang_string('extractnamedept_desc', 'local_course_merge'), '', PARAM_NOTAGS));
+        new lang_string('extractnamedept_desc', 'local_course_merge'),
+        '',
+        PARAM_NOTAGS
+    ));
 
-    $settings->add(new admin_setting_configtext('local_course_merge/extractnamenum',
+    $settings->add(new admin_setting_configtext(
+        'local_course_merge/extractnamenum',
         new lang_string('extractnamenum', 'local_course_merge'),
-        new lang_string('extractnamenum_desc', 'local_course_merge'), '', PARAM_NOTAGS));
+        new lang_string('extractnamenum_desc', 'local_course_merge'),
+        '',
+        PARAM_NOTAGS
+    ));
 
-    $settings->add(new admin_setting_configtext('local_course_merge/extractnameterm',
+    $settings->add(new admin_setting_configtext(
+        'local_course_merge/extractnameterm',
         new lang_string('extractnameterm', 'local_course_merge'),
-        new lang_string('extractnameterm_desc', 'local_course_merge'), '', PARAM_NOTAGS));
+        new lang_string('extractnameterm_desc', 'local_course_merge'),
+        '',
+        PARAM_NOTAGS
+    ));
 
-    $settings->add(new admin_setting_configtext('local_course_merge/extractnamesection',
+    $settings->add(new admin_setting_configtext(
+        'local_course_merge/extractnamesection',
         new lang_string('extractnamesection', 'local_course_merge'),
-        new lang_string('extractnamesection_desc', 'local_course_merge'), '', PARAM_NOTAGS));
+        new lang_string('extractnamesection_desc', 'local_course_merge'),
+        '',
+        PARAM_NOTAGS
+    ));
 
-    $settings->add(new admin_setting_configtext('local_course_merge/extracttermcode',
+    $settings->add(new admin_setting_configtext(
+        'local_course_merge/extracttermcode',
         new lang_string('extracttermcode', 'local_course_merge'),
-        new lang_string('extracttermcode_desc', 'local_course_merge'), '', PARAM_NOTAGS));
+        new lang_string('extracttermcode_desc', 'local_course_merge'),
+        '',
+        PARAM_NOTAGS
+    ));
 
-    $settings->add(new admin_setting_configtext('local_course_merge/mergedcoursenameformat',
+    $settings->add(new admin_setting_configtext(
+        'local_course_merge/mergedcoursenameformat',
         get_string('mergedcoursenameformat', 'local_course_merge'),
-        get_string('mergedcoursenameformat_desc', 'local_course_merge'), '', PARAM_NOTAGS));
+        get_string('mergedcoursenameformat_desc', 'local_course_merge'),
+        '',
+        PARAM_NOTAGS
+    ));
 
-    $settings->add(new admin_setting_configtext('local_course_merge/mergedcourseshortnameformat',
+    $settings->add(new admin_setting_configtext(
+        'local_course_merge/mergedcourseshortnameformat',
         get_string('mergedcourseshortnameformat', 'local_course_merge'),
-        get_string('mergedcourseshortnameformat_desc', 'local_course_merge'), '', PARAM_NOTAGS));
+        get_string('mergedcourseshortnameformat_desc', 'local_course_merge'),
+        '',
+        PARAM_NOTAGS
+    ));
 
-    $settings->add(new admin_setting_configtext('local_course_merge/mergedcourseidnumberformat',
+    $settings->add(new admin_setting_configtext(
+        'local_course_merge/mergedcourseidnumberformat',
         get_string('mergedcourseidnumberformat', 'local_course_merge'),
-        get_string('mergedcourseidnumberformat_desc', 'local_course_merge'), '', PARAM_NOTAGS));
+        get_string('mergedcourseidnumberformat_desc', 'local_course_merge'),
+        '',
+        PARAM_NOTAGS
+    ));
 }

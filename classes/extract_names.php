@@ -32,7 +32,6 @@ namespace local_course_merge;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class extract_names {
-
     /**
      * Create the default course fullname for the new course.
      *
@@ -80,9 +79,9 @@ class extract_names {
     public static function post_process($data, $courseids) {
         global $DB;
 
-        $fields = array('fullname', 'shortname', 'idnumber');
+        $fields = ['fullname', 'shortname', 'idnumber'];
         $courses = $DB->get_records_list('course', 'id', $courseids, '', 'fullname');
-        $sections = array();
+        $sections = [];
         foreach ($courses as $course) {
             $sections[] = ltrim(self::replace_token('[SECTION]', $course), '0');
         }
@@ -124,7 +123,7 @@ class extract_names {
      * @return string The found value for the token in the course, or empty
      */
     private static function replace_token($key, $course) {
-        switch($key) {
+        switch ($key) {
             case '[DEPT]':
                 $pattern = get_config('local_course_merge', 'extractnamedept');
                 $subject = $course->fullname;

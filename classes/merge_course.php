@@ -26,7 +26,7 @@ namespace local_course_merge;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot.'/enrol/meta/locallib.php');
+require_once($CFG->dirroot . '/enrol/meta/locallib.php');
 
 /**
  * Primary functionality the course merge plugin.
@@ -106,8 +106,8 @@ class merge_course {
             $update = new \stdClass();
             $update->customint1 = $targetid;
             $update->customint2 = ENROL_META_CREATE_GROUP;
-            $instance = $DB->get_record('enrol', array('courseid' => $newcourse->id,
-                'enrol' => 'meta', 'id' => $eid), '*', MUST_EXIST);
+            $instance = $DB->get_record('enrol', ['courseid' => $newcourse->id,
+                'enrol' => 'meta', 'id' => $eid], '*', MUST_EXIST);
             $enrol->update_instance($instance, $update);
         }
     }
@@ -135,9 +135,9 @@ class merge_course {
      */
     private static function link_courses($newcourse, $coursestolink) {
         $enrol = enrol_get_plugin('meta');
-        $instances = array();
+        $instances = [];
         foreach ($coursestolink as $target) {
-            $instances[$target] = $enrol->add_instance($newcourse, array('customint1' => $target));
+            $instances[$target] = $enrol->add_instance($newcourse, ['customint1' => $target]);
             enrol_meta_sync($newcourse->id);
         }
         return $instances;

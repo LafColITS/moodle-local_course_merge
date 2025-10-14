@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 
-require_once($CFG->dirroot.'/local/course_merge/locallib.php');
+require_once($CFG->dirroot . '/local/course_merge/locallib.php');
 
 /**
  * Unit tests for the course merge helper
@@ -53,14 +53,14 @@ class mergecourses_test extends advanced_testcase {
         $coursestartdate = time();
         $courseenddate   = $coursestartdate + 86400;
         $category1 = $this->getDataGenerator()->create_category();
-        $category2 = $this->getDataGenerator()->create_category(array('parent' => $category1->id));
-        $course1 = $this->getDataGenerator()->create_course(array('category' => $category2->id,
-            'startdate' => $coursestartdate, 'enddate' => $courseenddate, 'numsections' => 16));
-        $course2 = $this->getDataGenerator()->create_course(array('category' => $category2->id,
-            'startdate' => $coursestartdate, 'enddate' => $courseenddate, 'numsections' => 14));
+        $category2 = $this->getDataGenerator()->create_category(['parent' => $category1->id]);
+        $course1 = $this->getDataGenerator()->create_course(['category' => $category2->id,
+            'startdate' => $coursestartdate, 'enddate' => $courseenddate, 'numsections' => 16]);
+        $course2 = $this->getDataGenerator()->create_course(['category' => $category2->id,
+            'startdate' => $coursestartdate, 'enddate' => $courseenddate, 'numsections' => 14]);
 
         // Sanity check.
-        $courses = $DB->count_records('course', array('category' => $category2->id));
+        $courses = $DB->count_records('course', ['category' => $category2->id]);
         $this->assertEquals(2, $courses);
 
         // Section checks.
@@ -77,9 +77,9 @@ class mergecourses_test extends advanced_testcase {
         $data->fullname  = $course1->fullname;
         $data->shortname = 'Shorter name';
         $data->idnumber  = '';
-        $coursestolink   = array($course1->id, $course2->id);
+        $coursestolink   = [$course1->id, $course2->id];
         $course3 = merge_course::create_course($data, $coursestolink);
-        $courses = $DB->count_records('course', array('category' => $category2->id));
+        $courses = $DB->count_records('course', ['category' => $category2->id]);
         $this->assertEquals(3, $courses);
 
         // Count the sections in the merged course.

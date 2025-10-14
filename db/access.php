@@ -24,37 +24,37 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = array(
-    'local/course_merge:create_course' => array(
+$capabilities = [
+    'local/course_merge:create_course' => [
         'captype'      => 'write',
         'contextlevel' => CONTEXT_COURSE,
-        'archetypes'   => array(
+        'archetypes'   => [
             'student'        => CAP_PROHIBIT,
             'teacher'        => CAP_PREVENT,
             'editingteacher' => CAP_ALLOW,
             'manager'        => CAP_ALLOW,
-        ),
-    ),
+        ],
+    ],
 
-    'local/course_merge:override_format' => array(
+    'local/course_merge:override_format' => [
         'captype'      => 'write',
         'contextlevel' => CONTEXT_COURSE,
-        'archetypes'   => array(
+        'archetypes'   => [
             'student'        => CAP_PROHIBIT,
             'teacher'        => CAP_PREVENT,
             'editingteacher' => CAP_PREVENT,
             'manager'        => CAP_ALLOW,
-        ),
-    ),
+        ],
+    ],
 
-    'local/course_merge:categorize_course' => array(
+    'local/course_merge:categorize_course' => [
         'captype'      => 'write',
         'contextlevel' => CONTEXT_COURSECAT,
-        'archetypes'   => array(
+        'archetypes'   => [
             'student'        => CAP_PROHIBIT,
             'teacher'        => CAP_PREVENT,
             'editingteacher' => CAP_PREVENT,
             'manager'        => CAP_ALLOW,
-        ),
-    ),
-);
+        ],
+    ],
+];

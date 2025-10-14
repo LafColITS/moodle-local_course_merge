@@ -48,11 +48,11 @@ class helper {
     public static function course_exists($course, $url) {
         global $DB;
 
-        if ($DB->record_exists('course', array('shortname' => $course->shortname))) {
+        if ($DB->record_exists('course', ['shortname' => $course->shortname])) {
             throw new \moodle_exception('shortnameexists', 'local_course_merge', $url, $course->shortname);
         }
 
-        if (!empty($course->idnumber) && $DB->record_exists('course', array('idnumber' => $course->idnumber))) {
+        if (!empty($course->idnumber) && $DB->record_exists('course', ['idnumber' => $course->idnumber])) {
             throw new \moodle_exception('idnumberexists', 'local_course_merge', $url, $course->idnumber);
         }
     }
@@ -85,7 +85,7 @@ class helper {
      */
     public static function get_category_selector() {
         $categories = \core_course_category::make_categories_list();
-        $default = array(COURSE_MERGE_DEFAULT_CATEGORY  => get_string('defaultcategorytop', 'local_course_merge'));
+        $default = [COURSE_MERGE_DEFAULT_CATEGORY  => get_string('defaultcategorytop', 'local_course_merge')];
         return $default + $categories;
     }
 }
