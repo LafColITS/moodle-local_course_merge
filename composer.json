@@ -1,0 +1,12 @@
+{
+    "name": "lafayettecollege/moodle-local_course_merge",
+    "description": "This local module allows teachers to create a new course from existing courses using the Course meta link enrollment method.",
+    "type": "moodle-local",
+    "require": {
+        "composer/installers": "*"
+    },
+    "license": "GPL-3.0-or-later",
+    "extra": {
+        "installer-name": "course_template"
+    }
+}
