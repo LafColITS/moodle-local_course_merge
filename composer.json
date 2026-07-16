@@ -7,6 +7,6 @@
     },
     "license": "GPL-3.0-or-later",
     "extra": {
-        "installer-name": "course_template"
+        "installer-name": "course_merge"
     }
 }

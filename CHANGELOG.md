@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.1 (July 16, 2026)
+
+- Fix name in composer.json
+
 ## 4.1.0 (July 15, 2026)
 
 - Migrate CI builds to Github Actions
