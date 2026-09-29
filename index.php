@@ -45,7 +45,7 @@ if (get_config('local_course_merge', 'respectpermissions')) {
 // Course meta link has to be active.
 if (!local_course_merge\helper::meta_link_enabled()) {
     $returnurl = new moodle_url('/course/view.php', ['id' => $course->id]);
-    print_error('metalinknotenabled', 'local_course_merge');
+    throw new moodle_exception('metalinknotenabled', 'local_course_merge', $returnurl);
 }
 
 // Finish page setup.
