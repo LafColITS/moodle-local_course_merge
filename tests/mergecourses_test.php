@@ -37,11 +37,12 @@ require_once($CFG->dirroot . '/local/course_merge/locallib.php');
 /**
  * Unit tests for the course merge helper
  * @package    local_course_merge
+ * @covers     \local_course_merge\merge_course\create_course
  * @copyright  2017 Lafayette College ITS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class mergecourses_test extends advanced_testcase {
-    public function test_course_merge() {
+final class mergecourses_test extends advanced_testcase {
+    public function test_course_merge(): void {
         global $DB;
         $this->setAdminUser();
         $this->resetAfterTest(true);
